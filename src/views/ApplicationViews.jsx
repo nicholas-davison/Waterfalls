@@ -5,6 +5,7 @@ import { Outlet, Route, Routes } from "react-router-dom"
 import { getAllRegions } from "../services/LocationService"
 import { NavBar } from "../components/nav/NavBar"
 import { getDifficultyLevels } from "../services/DifficultyLevelService"
+import { WaterfallDetail } from "../components/waterfalls/WaterfallDetail"
 
 export const ApplicationViews = () => {
     const [allWaterfalls, setAllWaterfalls] = useState([])
@@ -38,6 +39,7 @@ export const ApplicationViews = () => {
                 </>
             }> 
                 <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions} allDifficultyLevels={allDifficultyLevels}/>}/>
+                <Route path=":waterfallId" element={<WaterfallDetail />}/>
             </Route>
         </Routes>
     )

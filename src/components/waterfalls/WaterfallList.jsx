@@ -3,6 +3,7 @@ import "./Waterfall.css"
 import { getLocationById } from "../../services/LocationService"
 import { FilterBar } from "./FilterBar"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) => {
@@ -10,6 +11,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) 
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
     const [searchTerm, setSearchTerm] = useState("")
+    const navigate = useNavigate()
 
     //useEffect to set filtered waterfalls by filterbar
     useEffect(() => {
@@ -73,7 +75,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) 
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="primary">View Details</Button>
+                  <Button variant="primary" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
                 </Card.Body>
               </Card>
             )
