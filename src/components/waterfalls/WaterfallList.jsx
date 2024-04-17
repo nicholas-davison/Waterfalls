@@ -5,22 +5,39 @@ import { FilterBar } from "./FilterBar"
 import { useEffect, useState } from "react"
 
 
-export const WaterfallList = ({allWaterfalls, allRegions}) => {
+export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) => {
     const [filteredWaterfalls, setFilteredWaterfalls] = useState([])
     const [selectedRegion, setSelectedRegion] = useState(null)
+    const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
+    const [searchTerm, setSearchTerm] = useState("")
 
+    //useEffect to set filtered waterfalls by filterbar
     useEffect(() => {
-        if (!selectedRegion) {
-            setFilteredWaterfalls(allWaterfalls)
-        } else {
-            const fallsByRegion = allWaterfalls.filter((waterfall) => waterfall.location.regionId === selectedRegion.id)
-            setFilteredWaterfalls(fallsByRegion)
+        let filteredFalls = allWaterfalls;
+
+        // Filter by region
+        if (selectedRegion) {
+            filteredFalls = filteredFalls.filter((waterfall) => waterfall.location.regionId === selectedRegion.id);
         }
-        
-    }, [allRegions, allWaterfalls, selectedRegion])
+
+        // Filter by difficulty level
+        if (selectedDifficultyLevel) {
+            filteredFalls = filteredFalls.filter((waterfall) => waterfall.difficultyLevel.id === selectedDifficultyLevel.id);
+        }
+
+         // Filter by search term
+        if (searchTerm) {
+            filteredFalls = filteredFalls.filter((waterfall) =>
+                waterfall.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        setFilteredWaterfalls(filteredFalls);
+        }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
+
     
-        // Function to get region name by region ID
-        const getRegionNameById = (regionId) => {
+    // Function to get region name by region ID
+    const getRegionNameById = (regionId) => {
             const region = allRegions.find(region => region.id === regionId);
             return region ? region.regionName : "Unknown Region";
         }
@@ -29,7 +46,16 @@ export const WaterfallList = ({allWaterfalls, allRegions}) => {
         <>
         
          <img src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Map.jpg"} alt="Tenneessee Map" width="80%"/>
-         <FilterBar allRegions={allRegions} setSelectedRegion={setSelectedRegion} selectedRegion={selectedRegion}/>
+         <FilterBar 
+            allRegions={allRegions} 
+            setSelectedRegion={setSelectedRegion} 
+            selectedRegion={selectedRegion} 
+            allDifficultyLevels={allDifficultyLevels} 
+            selectedDifficultyLevel={selectedDifficultyLevel} 
+            setSelectedDifficultyLevel={setSelectedDifficultyLevel}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            />
          <Container className="card-container">
             {filteredWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
