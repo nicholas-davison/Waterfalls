@@ -9,3 +9,16 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+}
+
+.waterfall-detail-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
