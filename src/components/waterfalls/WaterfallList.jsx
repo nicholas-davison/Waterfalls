@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 
-export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) => {
+export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, getRegionNameById}) => {
     const [filteredWaterfalls, setFilteredWaterfalls] = useState([])
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
@@ -37,13 +37,13 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels}) 
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
-    
+/*     
     // Function to get region name by region ID
     const getRegionNameById = (regionId) => {
             const region = allRegions.find(region => region.id === regionId);
             return region ? region.regionName : "Unknown Region";
         }
-
+ */
     return (
         <>
         
