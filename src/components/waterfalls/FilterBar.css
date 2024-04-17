@@ -1,0 +1,16 @@
+.filterbar {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.filterbar .input-group {
+    flex: 1; /* This will make the search bar take up the remaining space */
+    max-width: 500px; /* You can adjust the max-width as needed */
+    margin-right: 0px; /* Add some margin between the search bar and other elements */
+  }
+
+  .filterbar button {
+    height: 38px; /* Adjust the height to match the search bar and dropdowns */
+  }
