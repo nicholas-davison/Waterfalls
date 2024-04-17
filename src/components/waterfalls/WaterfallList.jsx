@@ -7,17 +7,17 @@ import { useEffect, useState } from "react"
 
 export const WaterfallList = ({allWaterfalls, allRegions}) => {
     const [filteredWaterfalls, setFilteredWaterfalls] = useState([])
-    const [selectedRegionId, setSelectedRegionId] = useState(0)
+    const [selectedRegion, setSelectedRegion] = useState(null)
 
     useEffect(() => {
-        if (selectedRegionId === 0) {
+        if (!selectedRegion) {
             setFilteredWaterfalls(allWaterfalls)
         } else {
-            const fallsByRegion = allWaterfalls.filter((waterfall) => waterfall.location.regionId === selectedRegionId)
+            const fallsByRegion = allWaterfalls.filter((waterfall) => waterfall.location.regionId === selectedRegion.id)
             setFilteredWaterfalls(fallsByRegion)
         }
         
-    }, [allRegions, allWaterfalls, selectedRegionId])
+    }, [allRegions, allWaterfalls, selectedRegion])
     
         // Function to get region name by region ID
         const getRegionNameById = (regionId) => {
@@ -29,7 +29,7 @@ export const WaterfallList = ({allWaterfalls, allRegions}) => {
         <>
         
          <img src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Map.jpg"} alt="Tenneessee Map" width="80%"/>
-         <FilterBar allRegions={allRegions} setSelectedRegionId={setSelectedRegionId}/>
+         <FilterBar allRegions={allRegions} setSelectedRegion={setSelectedRegion} selectedRegion={selectedRegion}/>
          <Container className="card-container">
             {filteredWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall

@@ -1,8 +1,9 @@
 import { useDebugValue, useEffect, useState } from "react"
 import { WaterfallList } from "../components/waterfalls/WaterfallList"
 import { getWaterfalls } from "../services/WaterfallService"
-import { Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes } from "react-router-dom"
 import { getAllRegions } from "../services/LocationService"
+import { NavBar } from "../components/nav/NavBar"
 
 export const ApplicationViews = () => {
     const [allWaterfalls, setAllWaterfalls] = useState([])
@@ -23,8 +24,15 @@ export const ApplicationViews = () => {
 
     return (
         <Routes>
-            <Route path="/" element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions}/>}
-            />
+            <Route path="/" element={
+                <>
+                    <NavBar />
+                    <Outlet />
+                </>
+            }> 
+                <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions}/>}/>
+            </Route>
         </Routes>
     )
 }
+
