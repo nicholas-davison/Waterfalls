@@ -12,7 +12,7 @@ export const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">All Waterfalls</Nav.Link>
             <Nav.Link href="#link">New Falls</Nav.Link>
-            <Nav.Link href="#link">Favorites</Nav.Link>
+            <Nav.Link href="favorites">Favorites</Nav.Link>
             <NavDropdown title="Me" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
