@@ -1,7 +1,8 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 
 export const NavBar = () => {
-
+  const navigate = useNavigate()
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -15,7 +16,10 @@ export const NavBar = () => {
             <NavDropdown title="Me" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="" onClick={() => {
+                    localStorage.removeItem("learning_user")
+                    navigate("/login", { replace: true })
+                }}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
