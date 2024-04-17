@@ -33,6 +33,10 @@ export const WaterfallDetail = () => {
                 <h2>{currentWaterfall.location?.name}</h2>
                 <p>{currentWaterfall.description}</p>
             </Container>
+            <Container className="waterfall-btn-container">
+                <Button className="waterfall-btn" variant="warning">Edit Listing</Button>
+                <Button className="waterfall-btn" variant="danger">Delete Listing</Button>
+            </Container>
         </div>
     )
 }
