@@ -9,3 +9,13 @@ export const getWaterfallById = async (waterfallId) => {
 export const getUserWaterfallsByUserId = async (userId) => {
     return await fetch(`http://localhost:8088/userWaterfalls?_userId=${userId}`).then(res => res.json())
 }
+
+export const saveNewWaterfall = async (newWaterfall) => {
+    return await fetch("http://localhost:8088/waterfalls", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newWaterfall)
+    })
+}
