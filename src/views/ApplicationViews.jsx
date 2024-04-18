@@ -9,6 +9,7 @@ import { WaterfallDetail } from "../components/waterfalls/WaterfallDetail"
 import { FavoriteFalls } from "../components/waterfalls/FavoriteFalls"
 import { NewWaterfall } from "../components/waterfalls/NewWaterfall"
 import { Newlocation } from "../components/locations/NewLocation"
+import { EditWaterfall } from "../components/waterfalls/EditWaterfall"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -65,12 +66,14 @@ export const ApplicationViews = () => {
                 </>
             }> 
                 <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions} allDifficultyLevels={allDifficultyLevels} getRegionNameById={getRegionNameById}/>}/>
-                <Route path=":waterfallId" element={<WaterfallDetail currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
+                <Route path=":waterfallId">
+                    <Route index element={<WaterfallDetail currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
+                    <Route path="edit" element={<NewWaterfall allLocations={allLocations}/>}/>
+                </Route> 
                 <Route path="favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
                 <Route path="newfalls" element={<NewWaterfall allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
-                <Route path="profile" element={<>Hello</>}/>
-
+                <Route path="profile" element={<>Profile Component Here</>}/>
             </Route>
         </Routes>
     )
