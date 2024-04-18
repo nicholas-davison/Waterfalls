@@ -37,8 +37,9 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
 
     //find the post that has the matching userId and waterfallId and delete it
     const handleRemoveFavorite = async () => {
-        deleteFavoriteById(matchingUserWaterfall.id)
-        getAndSetCurrentWaterfall()
+        await deleteFavoriteById(matchingUserWaterfall.id).then(() => {
+            getAndSetCurrentWaterfall()
+        })
     }
 
     const handleDeleteWaterfall = async () => {
