@@ -80,7 +80,7 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
             <Container className="waterfall-btn-container">
                 {currentUser.id === currentWaterfall.userId ? (
                     <>
-                <Button className="waterfall-btn" variant="warning">Edit Listing</Button>
+                <Button className="waterfall-btn" variant="warning" onClick={() => navigate("edit")}>Edit Listing</Button>
                 <Button className="waterfall-btn" variant="danger" onClick={handleDeleteWaterfall}>Delete Listing</Button>
                     </>
                 ) : (

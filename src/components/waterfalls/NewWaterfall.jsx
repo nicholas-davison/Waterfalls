@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Alert, Button, InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
-import { useNavigate } from 'react-router-dom'
-import { saveNewWaterfall } from '../../services/WaterfallService'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
 
 
 export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
+    const { waterfallId } = useParams()
     const [newWaterfall, setNewWaterfall] = useState({
         name: "",
         userId: 0,
@@ -17,6 +18,13 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
         imageUrl: "",
     })
 
+    useEffect(() => {
+        if (waterfallId) {
+            getWaterfallById(waterfallId).then(existingWaterfall => {
+                setNewWaterfall(existingWaterfall)
+            })
+        }
+    }, [waterfallId])
 
     //alert
     if (show) {
@@ -51,14 +59,20 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
             return Object.values(obj).every(value => !!value);
           }
         if (allTruthy(newWaterfall)) {
-            saveNewWaterfall(newWaterfall).then(() => {
-                getAndSetAllWaterfalls()
-                navigate("/profile")
-        })
+            if (waterfallId) {
+                 await updateExistingWaterfall(waterfallId, newWaterfall).then(() => {
+                    getAndSetAllWaterfalls()
+                    navigate("/profile")
+                 })
+            } else {
+               await saveNewWaterfall(newWaterfall).then(() => {
+                    getAndSetAllWaterfalls()
+                    navigate("/profile")
+            })
+        }
         } else {
             setShow(true)
         }
-
     }
 
     return (
@@ -78,7 +92,7 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
 
         <Form.Group className="mb-3" controlId="formLocationSelect">
             <Form.Label>Location</Form.Label>
-            <Form.Select aria-label="Waterfall location select" name="locationId" onChange={handleIdChange}>
+            <Form.Select aria-label="Waterfall location select" name="locationId" value={newWaterfall.locationId} onChange={handleIdChange}>
                 <option>Choose a location</option>
                 {allLocations.map(location => (
                     <option value={location.id} key={location.id}>{location.name}</option>
@@ -101,7 +115,7 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
 
         <Form.Group className="mb-3" controlId="formDifficultySelect">
             <Form.Label>Difficulty Level</Form.Label>
-            <Form.Select aria-label="Waterfall difficulty level select" name="difficultyLevelId" onChange={handleIdChange}>
+            <Form.Select aria-label="Waterfall difficulty level select" name="difficultyLevelId" value={newWaterfall.difficultyLevelId} onChange={handleIdChange}>
                 <option>Choose a Difficulty Level</option>
                 <option value="1">Easy</option>
                 <option value="2">Moderate</option>

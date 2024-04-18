@@ -28,3 +28,13 @@ export const deleteWaterfall = async (waterfallId) => {
         }
     })
 }
+
+export const updateExistingWaterfall = async (waterfallId, newWaterfall) => {
+    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newWaterfall)
+    })
+}
