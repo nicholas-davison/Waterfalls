@@ -8,6 +8,7 @@ import { getDifficultyLevels } from "../services/DifficultyLevelService"
 import { WaterfallDetail } from "../components/waterfalls/WaterfallDetail"
 import { FavoriteFalls } from "../components/waterfalls/FavoriteFalls"
 import { NewWaterfall } from "../components/waterfalls/NewWaterfall"
+import { Newlocation } from "../components/locations/NewLocation"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -66,7 +67,9 @@ export const ApplicationViews = () => {
                 <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions} allDifficultyLevels={allDifficultyLevels} getRegionNameById={getRegionNameById}/>}/>
                 <Route path=":waterfallId" element={<WaterfallDetail currentUser={currentUser}/>}/>
                 <Route path="favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
-                <Route path="new" element={<NewWaterfall allLocations={allLocations}/>}/>
+                <Route path="newfalls" element={<NewWaterfall allLocations={allLocations}/>}/>
+                <Route path="newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
+
             </Route>
         </Routes>
     )
