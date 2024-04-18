@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { getWaterfallById } from "../../services/WaterfallService"
+import { useNavigate, useParams } from "react-router-dom"
+import { deleteWaterfall, getWaterfallById } from "../../services/WaterfallService"
 import { Button, Col, Container, Image } from "react-bootstrap"
 import { postNewFavorite, deleteFavoriteById } from "../../services/FavoriteFallsService"
 
 
-export const WaterfallDetail = ({ currentUser }) => {
+export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
+    const navigate = useNavigate()
     const { waterfallId } = useParams()
     const [currentWaterfall, setCurrentWaterfall] = useState({})
 
     //set state with waterfall by id used in useParams
-    const getAndSetCurrentWaterfall = () => {
-        getWaterfallById(waterfallId).then(res => setCurrentWaterfall(res))
+    const getAndSetCurrentWaterfall = async () => {
+        await getWaterfallById(waterfallId).then(res => setCurrentWaterfall(res))
     }
     useEffect(() => {
         getAndSetCurrentWaterfall()
-    }, [waterfallId])
+    }, [waterfallId, currentUser])
 
 
     //declare a variable for the like relationship between user and waterfall, which will return an id if it exists and if it doesnt it will be undefined
-    const matchingUserWaterfall = currentWaterfall.userWaterfalls && currentWaterfall.userWaterfalls.find((like) => like.userId === currentUser.id)
+        const matchingUserWaterfall = currentWaterfall.userWaterfalls && currentWaterfall.userWaterfalls.find((like) => like.userId === currentUser.id)
+   
 
 
     //Post new favorite relationship
@@ -37,6 +39,13 @@ export const WaterfallDetail = ({ currentUser }) => {
     const handleRemoveFavorite = async () => {
         deleteFavoriteById(matchingUserWaterfall.id)
         getAndSetCurrentWaterfall()
+    }
+
+    const handleDeleteWaterfall = async () => {
+        await deleteWaterfall(parseInt(waterfallId)).then(() => {
+            getAndSetAllWaterfalls()
+            navigate("/")
+        })
     }
 
     return (
@@ -68,8 +77,14 @@ export const WaterfallDetail = ({ currentUser }) => {
                 <p>{currentWaterfall.description}</p>
             </Container>
             <Container className="waterfall-btn-container">
+                {currentUser.id === currentWaterfall.userId ? (
+                    <>
                 <Button className="waterfall-btn" variant="warning">Edit Listing</Button>
-                <Button className="waterfall-btn" variant="danger">Delete Listing</Button>
+                <Button className="waterfall-btn" variant="danger" onClick={handleDeleteWaterfall}>Delete Listing</Button>
+                    </>
+                ) : (
+                    ""
+                )}
             </Container>
         </div>
     )

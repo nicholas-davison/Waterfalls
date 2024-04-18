@@ -19,3 +19,12 @@ export const saveNewWaterfall = async (newWaterfall) => {
         body: JSON.stringify(newWaterfall)
     })
 }
+
+export const deleteWaterfall = async (waterfallId) => {
+    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+}
