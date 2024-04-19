@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Alert, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
+import { checkWaterfallByName, getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
 
 
 export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
@@ -66,10 +66,15 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
                     navigate("/profile")
                  })
             } else {
-               await saveNewWaterfall(newWaterfall).then(() => {
-                    getAndSetAllWaterfalls()
-                    navigate("/profile")
-            })
+                const duplicateWaterfallName = await checkWaterfallByName(newWaterfall.name)
+                if (duplicateWaterfallName) {
+                    alert('A waterfall with the same name already exists!')
+                } else {
+                    await saveNewWaterfall(newWaterfall).then(() => {
+                         getAndSetAllWaterfalls()
+                         navigate("/profile")
+                 })
+                }
         }
         } else {
             setShow(true)
