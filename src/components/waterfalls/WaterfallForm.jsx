@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Alert, Button, InputGroup } from 'react-bootstrap'
+import { Alert, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
 
 
-export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
+export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
     const { waterfallId } = useParams()
@@ -18,6 +18,7 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
         imageUrl: "",
     })
 
+    //if there is an existing waterfallId, get that waterfall and set is as the new waterfall
     useEffect(() => {
         if (waterfallId) {
             getWaterfallById(waterfallId).then(existingWaterfall => {
@@ -32,7 +33,7 @@ export const NewWaterfall = ({allLocations, currentUser, getAndSetAllWaterfalls}
           <Alert variant="danger" onClose={() => setShow(false)} dismissible>
             <Alert.Heading>Ruh Roh! You water complete the form!</Alert.Heading>
             <p>
-              Please make sure all fields and dropdowns are completed before trying to submit your new waterfall.
+              Please make sure all fields and dropdowns are completed before submitting your new waterfall.
             </p>
           </Alert>
         );

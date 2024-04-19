@@ -37,17 +37,12 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
-/*     
-    // Function to get region name by region ID
-    const getRegionNameById = (regionId) => {
-            const region = allRegions.find(region => region.id === regionId);
-            return region ? region.regionName : "Unknown Region";
-        }
- */
     return (
         <>
-        
-         <img src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Map.jpg"} alt="Tenneessee Map" width="80%"/>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tenneessee Map" width="80%"/>
+        </div>
+        <h1 className="site-header">Falls Finder</h1>
          <FilterBar 
             allRegions={allRegions} 
             setSelectedRegion={setSelectedRegion} 
@@ -64,7 +59,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             const regionName = getRegionNameById(waterfallObj.location.regionId);
                 
             return (
-                <Card style={{ width: '18rem' }} key={waterfallObj.id}>
+                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
@@ -75,7 +70,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="primary" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
+                  <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
                 </Card.Body>
               </Card>
             )

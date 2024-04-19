@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react"
-import { getUserWaterfallsByUserId } from "../../services/WaterfallService"
+import { getUserWaterfallsByUserId, getWaterfallsByUserId } from "../../services/WaterfallService"
 import { Button, Card, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById }) => {
+export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
     const navigate = useNavigate()
 
-    const getAndSetFavoriteWaterfalls = () => {
-        getUserWaterfallsByUserId(currentUser.id).then((userFavorites) => {
-            const userWaterfallsIds = userFavorites.map(favorite => favorite.waterfallId)
-            const favoriteFalls = allWaterfalls.filter((falls) => userWaterfallsIds.includes(falls.id))
-            setFavoriteWaterfalls(favoriteFalls)
-        })
+    const getAndSetFavoriteWaterfalls = async () => {
+        if (authoredWaterfalls) {
+            await getWaterfallsByUserId(currentUser.id).then((userAuthoredWaterfalls) => {setFavoriteWaterfalls(userAuthoredWaterfalls)})
+        } else {
+            await getUserWaterfallsByUserId(currentUser.id).then((userFavorites) => {
+                const userWaterfallsIds = userFavorites.map(favorite => favorite.waterfallId)
+                const favoriteFalls = allWaterfalls.filter((falls) => userWaterfallsIds.includes(falls.id))
+                setFavoriteWaterfalls(favoriteFalls)
+            })
+        }
     }
 
     useEffect(() => {
         getAndSetFavoriteWaterfalls()
-    }, [allWaterfalls, currentUser])
-
-/*     // Function to get region name by region ID
-    const getRegionNameById = (regionId) => {
-        const region = allRegions.find(region => region.id === regionId);
-        return region ? region.regionName : "Unknown Region";
-    } */
+    }, [allWaterfalls, currentUser, authoredWaterfalls])
     
     return (
         <div>
-            <h1>Favorites</h1>
+            {authoredWaterfalls ? <h1>Authored Waterfalls</h1> : <h1>Favorites</h1>}   
             <Container className="card-container">
             {favoriteWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
@@ -45,7 +43,7 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById })
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="primary" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
+                  <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
                 </Card.Body>
               </Card>
             )
