@@ -60,23 +60,22 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
             return Object.values(obj).every(value => !!value);
           }
         if (allTruthy(newWaterfall)) {
-            const duplicateName = await checkWaterfallByName(newWaterfall.name);
-            if (duplicateName) {
-                // Handle duplicate name, for example, show an error message
-                alert('A waterfall with the same name already exists!');
-            } else {
             if (waterfallId) {
                  await updateExistingWaterfall(waterfallId, newWaterfall).then(() => {
                     getAndSetAllWaterfalls()
                     navigate("/profile")
                  })
             } else {
-               await saveNewWaterfall(newWaterfall).then(() => {
-                    getAndSetAllWaterfalls()
-                    navigate("/profile")
-            })
+                const duplicateWaterfallName = await checkWaterfallByName(newWaterfall.name)
+                if (duplicateWaterfallName) {
+                    alert('A waterfall with the same name already exists!')
+                } else {
+                    await saveNewWaterfall(newWaterfall).then(() => {
+                         getAndSetAllWaterfalls()
+                         navigate("/profile")
+                 })
+                }
         }
-    }
         } else {
             setShow(true)
         }

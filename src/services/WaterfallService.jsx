@@ -49,5 +49,6 @@ export const updateExistingWaterfall = async (waterfallId, newWaterfall) => {
 
 
 export const checkWaterfallByName = async (waterfallName) => {
-    return await fetch(`http://localhost:8088/waterfalls?name=${waterfallName}`).then(res => res.json())
+    const response = await fetch(`http://localhost:8088/waterfalls?name=${waterfallName}`).then(res => res.json())
+    return response.length > 0
 }
