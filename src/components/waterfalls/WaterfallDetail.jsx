@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteWaterfall, getWaterfallById } from "../../services/WaterfallService"
+import { deleteWaterfall, getExpandedWaterfallById } from "../../services/WaterfallService"
 import { Button, Col, Container, Image } from "react-bootstrap"
 import { postNewFavorite, deleteFavoriteById } from "../../services/FavoriteFallsService"
 
@@ -12,7 +12,7 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
 
     //set state with waterfall by id used in useParams
     const getAndSetCurrentWaterfall = async () => {
-        await getWaterfallById(waterfallId).then(res => setCurrentWaterfall(res))
+        await getExpandedWaterfallById(waterfallId).then(res => setCurrentWaterfall(res))
     }
     useEffect(() => {
         getAndSetCurrentWaterfall()

@@ -1,4 +1,4 @@
-import { useDebugValue, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { WaterfallList } from "../components/waterfalls/WaterfallList"
 import { getWaterfalls } from "../services/WaterfallService"
 import { Outlet, Route, Routes } from "react-router-dom"
@@ -7,9 +7,8 @@ import { NavBar } from "../components/nav/NavBar"
 import { getDifficultyLevels } from "../services/DifficultyLevelService"
 import { WaterfallDetail } from "../components/waterfalls/WaterfallDetail"
 import { FavoriteFalls } from "../components/waterfalls/FavoriteFalls"
-import { NewWaterfall } from "../components/waterfalls/NewWaterfall"
+import { WaterfallForm } from "../components/waterfalls/WaterfallForm"
 import { Newlocation } from "../components/locations/NewLocation"
-import { EditWaterfall } from "../components/waterfalls/EditWaterfall"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -68,10 +67,10 @@ export const ApplicationViews = () => {
                 <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions} allDifficultyLevels={allDifficultyLevels} getRegionNameById={getRegionNameById}/>}/>
                 <Route path=":waterfallId">
                     <Route index element={<WaterfallDetail currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
-                    <Route path="edit" element={<NewWaterfall allLocations={allLocations}/>}/>
+                    <Route path="edit" element={<WaterfallForm allLocations={allLocations} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 </Route> 
                 <Route path="favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
-                <Route path="newfalls" element={<NewWaterfall allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
+                <Route path="newfalls" element={<WaterfallForm allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
                 <Route path="profile" element={<>Profile Component Here</>}/>
             </Route>
