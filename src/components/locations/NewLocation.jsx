@@ -21,10 +21,17 @@ export const Newlocation = ({getAndSetAllLocations}) => {
 
     const handleSavenNewLocation = async (event) => {
         event.preventDefault()
-        await saveNewLocation(newLocationInput).then(
-            getAndSetAllLocations()
-        )
-        navigate("/newfalls")
+        const allTruthy = (obj) => {
+            return Object.values(obj).every(value => !!value);
+          }
+        if (allTruthy(newLocationInput)) {
+            await saveNewLocation(newLocationInput).then(
+                getAndSetAllLocations()
+            )
+            navigate("/newfalls")
+        } else {
+            window.alert("Please complete form!")
+        }
     }
 
 
