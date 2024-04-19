@@ -1,15 +1,24 @@
 import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
+import { saveUserProfileChanges } from "../../services/userService"
 
-export const EditProfile = ({userProfile}) => {
+export const EditProfile = ({userProfile, getAndSetUserProfile}) => {
     const [updatedProfileInfo, setUpdatedProfileInfo] = useState({id: userProfile.id, name: userProfile.name, address: userProfile.address, email: userProfile.email})
-
+    const navigate = useNavigate()
     const handleChange = (event) => {
         const profileCopy = {...updatedProfileInfo}
         profileCopy[event.target.name] = event.target.value
         setUpdatedProfileInfo(profileCopy)
     }
 
+    const handleSaveUserChanges = async (event) => {
+        event.preventDefault()
+        await saveUserProfileChanges(updatedProfileInfo).then(() => {
+            getAndSetUserProfile()
+            navigate("/profile")
+        })
+    }
     return (
         <Form className="form-profile-edit">
             <Form.Group className="mb-3" controlId="form-profile" >
@@ -42,7 +51,7 @@ export const EditProfile = ({userProfile}) => {
                     onChange={handleChange}
                 />
             </Form.Group>
-            <Button variant="success">Save</Button>
+            <Button variant="success" onClick={handleSaveUserChanges}>Save</Button>
         </Form>
     )
 }

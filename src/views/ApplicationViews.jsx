@@ -95,7 +95,7 @@ export const ApplicationViews = () => {
                 <Route path="newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
                 <Route path="profile" >
                     <Route index element={<Profile userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
-                    <Route path="edit" element={<EditProfile userProfile={userProfile}/>}/>
+                    <Route path="edit" element={<EditProfile userProfile={userProfile} getAndSetUserProfile={getAndSetUserProfile}/>}/>
                 </Route>
             </Route>
         </Routes>
