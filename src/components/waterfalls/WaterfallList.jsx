@@ -37,13 +37,6 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
-/*     
-    // Function to get region name by region ID
-    const getRegionNameById = (regionId) => {
-            const region = allRegions.find(region => region.id === regionId);
-            return region ? region.regionName : "Unknown Region";
-        }
- */
     return (
         <>
         

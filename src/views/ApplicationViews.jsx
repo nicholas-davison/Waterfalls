@@ -9,9 +9,13 @@ import { WaterfallDetail } from "../components/waterfalls/WaterfallDetail"
 import { FavoriteFalls } from "../components/waterfalls/FavoriteFalls"
 import { WaterfallForm } from "../components/waterfalls/WaterfallForm"
 import { Newlocation } from "../components/locations/NewLocation"
+import { Profile } from "../components/profile/Profile"
+import { getUserProfileById } from "../services/userService"
+import { EditProfile } from "../components/profile/EditProfile"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
+    const [userProfile, setUserProfile] = useState({})
     const [allWaterfalls, setAllWaterfalls] = useState([])
     const [allRegions, setAllRegions] = useState([])
     const [allDifficultyLevels, setAllDifficultyLevels] = useState([])
@@ -24,7 +28,19 @@ export const ApplicationViews = () => {
         setCurrentUser(learningUserObject)
     }, [])
 
-    //setter function for waterfalls with useEffect below
+
+    //getting and setting userProfile with userId - wait until the currentUser is loaded
+    const getAndSetUserProfile = async () => {
+       if (currentUser && currentUser.id) {
+           await getUserProfileById(currentUser.id).then(res => setUserProfile(res))
+       }
+    }
+    useEffect(() => {
+        getAndSetUserProfile()
+    }, [currentUser])
+
+
+    //get all waterfalls with useEffect below
     const getAndSetAllWaterfalls = async () => {
         await getWaterfalls().then(res => setAllWaterfalls(res))
     }
@@ -32,21 +48,25 @@ export const ApplicationViews = () => {
         getAndSetAllWaterfalls()
     }, [])
 
+
     //get and set all regions in useEffect
     useEffect(() => {
         getAllRegions().then(res => setAllRegions(res))
     }, [])
+
 
     //get and set all difficultyLevels in useEffect
     useEffect(() => {
         getDifficultyLevels().then(res => setAllDifficultyLevels(res))
     }, [])
 
+
     // Function to get region name by region ID
     const getRegionNameById = (regionId) => {
         const region = allRegions.find(region => region.id === regionId);
         return region ? region.regionName : "Unknown Region";
     }
+
 
     //get and set all locations function and use effect
     const getAndSetAllLocations = async () => {
@@ -55,6 +75,7 @@ export const ApplicationViews = () => {
     useEffect(() => {
         getAndSetAllLocations()
     }, [])
+
 
     return (
         <Routes>
@@ -72,7 +93,10 @@ export const ApplicationViews = () => {
                 <Route path="favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
                 <Route path="newfalls" element={<WaterfallForm allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
-                <Route path="profile" element={<>Profile Component Here</>}/>
+                <Route path="profile" >
+                    <Route index element={<Profile userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
+                    <Route path="edit" element={<EditProfile userProfile={userProfile}/>}/>
+                </Route>
             </Route>
         </Routes>
     )
