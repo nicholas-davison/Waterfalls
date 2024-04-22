@@ -15,7 +15,7 @@ export const getWaterfallsByUserId = async (userId) => {
 }
 
 export const getUserWaterfallsByUserId = async (userId) => {
-    return await fetch(`http://localhost:8088/userWaterfalls?_userId=${userId}`).then(res => res.json())
+    return await fetch(`http://localhost:8088/userWaterfalls?userId=${userId}`).then(res => res.json())
 }
 
 export const saveNewWaterfall = async (newWaterfall) => {

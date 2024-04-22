@@ -50,7 +50,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     const handleIdChange = (event) => {
         const stateCopy = {...newWaterfall}
         stateCopy[event.target.name] = parseInt(event.target.value)
-        stateCopy.userId = currentUser.id
+        /* stateCopy.userId = currentUser.id */
         setNewWaterfall(stateCopy)
     }
 
@@ -108,17 +108,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
           Don't see your location?
         </Button>
         </Form.Group>
-{/* 
-        <Form.Group className="mb-3" controlId="formRegionSelect">
-            <Form.Label>Region</Form.Label>
-            <Form.Select aria-label="Waterfall region select" name="regoinId" onChange={handleIdChange}>
-                <option>Choose a region</option>
-                <option value="1">West</option>
-                <option value="2">Middle</option>
-                <option value="3">East</option>
-            </Form.Select>
-        </Form.Group> */}
-
+        
         <Form.Group className="mb-3" controlId="formDifficultySelect">
             <Form.Label>Difficulty Level</Form.Label>
             <Form.Select aria-label="Waterfall difficulty level select" name="difficultyLevelId" value={newWaterfall.difficultyLevelId} onChange={handleIdChange}>
