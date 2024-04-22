@@ -88,9 +88,9 @@ export const ApplicationViews = () => {
                 <Route index element={<WaterfallList allWaterfalls={allWaterfalls} allRegions={allRegions} allDifficultyLevels={allDifficultyLevels} getRegionNameById={getRegionNameById}/>}/>
                 <Route path=":waterfallId">
                     <Route index element={<WaterfallDetail currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
-                    <Route path="edit" element={<WaterfallForm allLocations={allLocations} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
+                    <Route path="edit" element={<WaterfallForm allLocations={allLocations} getAndSetAllWaterfalls={getAndSetAllWaterfalls} currentUser={currentUser}/>}/>
                 </Route> 
-                <Route path="/favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
+                <Route path="/favorites" element={<FavoriteFalls currentUser={currentUser} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById} authoredWaterfalls={false}/>}/>
                 <Route path="/newfalls" element={<WaterfallForm allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="/newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
                 <Route path="/profile" >
