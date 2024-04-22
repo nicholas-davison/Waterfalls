@@ -50,7 +50,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     const handleIdChange = (event) => {
         const stateCopy = {...newWaterfall}
         stateCopy[event.target.name] = parseInt(event.target.value)
-        /* stateCopy.userId = currentUser.id */
+        stateCopy.userId = currentUser.id
         setNewWaterfall(stateCopy)
     }
 
