@@ -13,6 +13,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin: 30px 0px;
 }
 .card-waterfall {
     margin: 10px 5px;

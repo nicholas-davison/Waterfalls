@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button, Form } from "react-bootstrap"
 import { saveNewLocation } from "../../services/LocationService"
 import { useNavigate } from "react-router-dom"
+import { MapSearch } from "../maps/MapSearch"
 
 export const Newlocation = ({getAndSetAllLocations}) => {
-    const [newLocationInput, setNewLocationInput] = useState({"name": "", "regionId": 0})
+    const [newLocationInput, setNewLocationInput] = useState({"name": "", "regionId": 0, "lat": 0, "lng": 0})
     const navigate = useNavigate()
-    
-    const handleLocationInputChange = (event) => {
-        const locationInputCopy = {...newLocationInput}
-        locationInputCopy.name = event.target.value
-        setNewLocationInput(locationInputCopy)
-    }
+    const inputRef = useRef(null)
 
     const handleRegionChange = (event) => {
         const locationInputCopy = {...newLocationInput}
@@ -25,10 +21,11 @@ export const Newlocation = ({getAndSetAllLocations}) => {
             return Object.values(obj).every(value => !!value);
           }
         if (allTruthy(newLocationInput)) {
-            await saveNewLocation(newLocationInput).then(
-                getAndSetAllLocations()
-            )
-            navigate("/newfalls")
+                await saveNewLocation(newLocationInput).then(
+                    getAndSetAllLocations()
+                )
+                navigate("/newfalls")
+        
         } else {
             window.alert("Please complete form!")
         }
@@ -38,10 +35,11 @@ export const Newlocation = ({getAndSetAllLocations}) => {
     return (
         <div>
             <h1>Add Location</h1>
+            <MapSearch inputRef={inputRef} setNewLocationInput={setNewLocationInput} newLocationInput={newLocationInput}/>
             <Form className="newresource-form">
                 <Form.Group className="mb-3" controlId="formlocation name">
                     <Form.Label>Location Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter location name" onChange={handleLocationInputChange}/>
+                    <Form.Control type="text" placeholder="Enter location name" ref={inputRef}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formRegion">
