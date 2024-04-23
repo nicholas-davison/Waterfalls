@@ -1,44 +1,78 @@
 .img-waterfall-card {
     height: 200px; /* Adjust the height as needed */
     object-fit: cover;
-    border-radius: 10px
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .site-header {
     text-align: center;
     margin-bottom: 50px;
-
+    font-size: 2rem;
+    color: #333;
 }
+
 .card-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
     margin: 30px 0px;
 }
+
 .card-waterfall {
-    margin: 10px 5px;
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
-.image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+
+.card-waterfall:hover {
+    transform: translateY(-5px);
+}
+
+.card-waterfall .card-body {
+    padding: 20px;
+}
+
+.card-waterfall .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-waterfall .card-subtitle {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.card-waterfall .btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.card-waterfall .btn:hover {
+    background-color: #4caf50;
+    color: #fff;
 }
 
 .waterfall-detail-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .waterfall-btn-container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    align-items: center;
 }
- .waterfall-btn {
-    margin-right: 5px;
- }
+
+.waterfall-btn {
+    margin-right: 10px;
+}
 
 .newresource-form {
     margin: 20px;
