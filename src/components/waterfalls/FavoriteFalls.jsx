@@ -4,7 +4,7 @@ import { Button, Card, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { Map } from "../maps/Map"
 
-export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls }) => {
+export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
     const navigate = useNavigate()
 
@@ -27,7 +27,7 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
     return (
         <div>
             {authoredWaterfalls ? <h1>Authored Waterfalls</h1> : <h1>Favorites</h1>}
-            <Map/>   
+            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>   
             <Container className="card-container">
             {favoriteWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
