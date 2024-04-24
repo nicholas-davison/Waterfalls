@@ -24,7 +24,7 @@ export const FilterBar = ({allRegions, selectedRegion, setSelectedRegion, allDif
     return (
         <div className="filterbar">
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic" title={selectedRegion?.regionName || "Select a Region"}>
+                <Dropdown.Toggle variant="light" id="dropdown-basic" title={selectedRegion?.regionName || "Select a Region"}>
                 {selectedRegion?.regionName || "Select a Region"}
                 </Dropdown.Toggle>
 
@@ -36,7 +36,7 @@ export const FilterBar = ({allRegions, selectedRegion, setSelectedRegion, allDif
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic" title={selectedDifficultyLevel?.type || "Difficulty Level"}>
+                <Dropdown.Toggle variant="light" id="dropdown-basic" title={selectedDifficultyLevel?.type || "Difficulty Level"}>
                 {selectedDifficultyLevel?.type || "Difficulty Level"}
                 </Dropdown.Toggle>
 

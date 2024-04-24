@@ -104,7 +104,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
                     <option value={location.id} key={location.id}>{location.name}</option>
                 ))}
             </Form.Select>
-            <Button variant="outline-secondary" id="button-addon2" onClick={() => navigate('/newlocation')}>
+            <Button variant="warning" id="button-addon2" onClick={() => navigate('/newlocation')}>
           Don't see your location?
         </Button>
         </Form.Group>

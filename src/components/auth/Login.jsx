@@ -30,6 +30,7 @@ export const Login = () => {
   }
 
   return (
+    <div className="page-wrapper">
     <main className="auth-container">
       <section>
         <form className="auth-form" onSubmit={handleLogin}>
@@ -59,6 +60,7 @@ export const Login = () => {
         <Link to="/register">Not a member yet?</Link>
       </section>
     </main>
+    </div>
   )
 }
 

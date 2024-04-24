@@ -1,3 +1,12 @@
+.page-wrapper {
+  margin: 0;
+  /* Integrate background image styling here */
+  background-image: url("https://media.giphy.com/media/l4FGzZAnAOXIFenOE/giphy.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh
+}
 .auth-container {
   border: 1px solid gray;
   margin: 3rem 15rem;
