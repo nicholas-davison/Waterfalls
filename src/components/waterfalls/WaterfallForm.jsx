@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Alert, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { checkWaterfallByName, getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
+import { MapSearch } from '../maps/MapSearch'
 
 
 export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
     const { waterfallId } = useParams()
+    const inputRef = useRef(null)
     const [newWaterfall, setNewWaterfall] = useState({
         name: "",
         userId: 0,
@@ -84,6 +86,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     return (
         <div>
         <h1>Add Waterfall</h1>
+        <MapSearch inputRef={inputRef} newWaterfall={newWaterfall} setNewWaterfall={setNewWaterfall}/>
         <Form className='newresource-form'>
         <Form.Group className="mb-3" controlId="formWaterfallName">
           <Form.Label>Waterfall Name</Form.Label>
@@ -93,9 +96,10 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
             value={newWaterfall.name} 
             name="name"
             onChange={handleTextChange}
+            ref={inputRef}
             />
         </Form.Group>
-
+        
         <Form.Group className="mb-3" controlId="formLocationSelect">
             <Form.Label>Location</Form.Label>
             <Form.Select aria-label="Waterfall location select" name="locationId" value={newWaterfall.locationId} onChange={handleIdChange}>

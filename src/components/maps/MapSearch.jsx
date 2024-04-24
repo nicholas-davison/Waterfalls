@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef }) => {
+export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef, newWaterfall, setNewWaterfall}) => {
   const mapRef = useRef(null); // Ref for the map container
 
   useEffect(() => {
@@ -29,11 +29,20 @@ export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef }) =
           latitude: place.geometry.location.lat(),
           longitude: place.geometry.location.lng(),
         }); */
+        if (newWaterfall) {
+          const newWaterfallInputCopy = {...newWaterfall}
+          newWaterfallInputCopy.name = place.name
+          newWaterfallInputCopy.imageUrl = place.photos
+          console.log(newWaterfallInputCopy.imageUrl)
+          setNewWaterfall(newWaterfallInputCopy)
+        } else {
           const locationInputCopy = {...newLocationInput}
           locationInputCopy.lat = place.geometry.location.lat(),
           locationInputCopy.lng = place.geometry.location.lng()
           locationInputCopy.name = place.name
           setNewLocationInput(locationInputCopy)
+        }
+
     });
 
       // Clean up event listener when component unmounts
@@ -43,7 +52,7 @@ export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef }) =
     };
 
     initMap();
-  }, [setNewLocationInput, inputRef]);
+  }, [setNewLocationInput, inputRef, setNewWaterfall]);
 
   return (
     <>

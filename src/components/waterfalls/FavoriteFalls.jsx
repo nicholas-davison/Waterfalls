@@ -26,8 +26,15 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
     
     return (
         <div>
-            {authoredWaterfalls ? <h1>Authored Waterfalls</h1> : <h1>Favorites</h1>}
-            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>   
+            {authoredWaterfalls ? (
+            <h1>Authored Waterfalls</h1>
+            ) : (
+            <>
+            <h1>Favorites</h1>
+            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>  
+            </> 
+            )}
+               
             <Container className="card-container">
             {favoriteWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
