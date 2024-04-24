@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-// import "./Login.css"
+import "./Login.css"
 import { getUserByEmail } from "../../services/userService"
 import { Button } from "react-bootstrap"
 
@@ -51,7 +51,7 @@ export const Login = () => {
           </fieldset>
           <fieldset className="auth-fieldset">
             <div>
-              <Button type="submit" variant="success">Sign in</Button>
+              <Button type="submit" variant="light">Sign in</Button>
             </div>
           </fieldset>
         </form>

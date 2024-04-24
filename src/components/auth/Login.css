@@ -1,37 +1,58 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .page-wrapper {
   margin: 0;
-  /* Integrate background image styling here */
-  background-image: url("https://media.giphy.com/media/l4FGzZAnAOXIFenOE/giphy.gif");
+  background-image: url("https://64.media.tumblr.com/eca0db729f41125a13edc84e1bab823c/tumblr_mtr4c7DH3F1r4zr2vo1_500.gifv");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  min-height: 100vh; /* Use vh (viewport height) instead of % for full height */
 }
+
 .auth-container {
-  border: 1px solid gray;
   margin: 3rem 15rem;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 2rem 
+ 
 }
 
 .header {
-  font-size: 2rem;
+  font-size: 4rem;
+  font-weight: bolder;
+  color:#D6EEFF;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold; /* Making font bold */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Adding text shadow */
+  color:#D6EEFF
 }
 
 .auth-form-input {
   padding: 0.25rem;
+  border: none; /* Remove border for input fields */
+  border-bottom: 1px solid gray; /* Add bottom border for input fields */
+  background-color: #D6EEFF; /* Make input fields transparent */
+  border-radius: 6px;
+  
+  
 }
 
 .register-link {
   text-align: center;
+  color:#D6EEFF
 }
 
 .auth-fieldset {
   margin: 0.25rem 0rem;
+  
 }

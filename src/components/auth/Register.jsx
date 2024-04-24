@@ -52,6 +52,7 @@ export const Register = (props) => {
   }
 
   return (
+    <div className="page-wrapper">
     <main className="auth-container">
       <form className="auth-form" onSubmit={handleRegister}>
         <h1 className="header">Falls Finder</h1>
@@ -100,5 +101,6 @@ export const Register = (props) => {
         </fieldset>
       </form>
     </main>
+    </div>
   )
 }

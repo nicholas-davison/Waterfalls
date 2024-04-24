@@ -34,10 +34,11 @@ body {
   background-color: var(--appBackground);
   margin: 0;
   /* Integrate background image styling here */
-/*   background-image: url("https://media.giphy.com/media/l4FGzZAnAOXIFenOE/giphy.gif");
+ 
+/*   background-image: url("https://media.giphy.com/media/GHpaiUYyIjyYznDyvF/giphy.gif"); */
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 h1,

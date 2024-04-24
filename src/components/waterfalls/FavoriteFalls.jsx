@@ -3,6 +3,7 @@ import { getUserWaterfallsByUserId, getWaterfallsByUserId } from "../../services
 import { Button, Card, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { Map } from "../maps/Map"
+import "./Waterfall.css" 
 
 export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])

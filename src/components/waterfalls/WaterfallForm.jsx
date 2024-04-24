@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { checkWaterfallByName, getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
 import { MapSearch } from '../maps/MapSearch'
+import "./Waterfall.css" 
 
 
 export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
