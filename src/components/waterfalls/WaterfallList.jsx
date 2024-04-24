@@ -57,13 +57,14 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             {filteredWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
             const regionName = getRegionNameById(waterfallObj.location.regionId);
-                
+            
+
             return (
                 <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
-                    src={`${waterfallObj.imageUrl}`}
+                    src={waterfallObj.imageUrl}
                     />
                 <Card.Body>
                   <Card.Title>{waterfallObj.name}</Card.Title>

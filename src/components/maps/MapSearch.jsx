@@ -32,8 +32,6 @@ export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef, new
         if (newWaterfall) {
           const newWaterfallInputCopy = {...newWaterfall}
           newWaterfallInputCopy.name = place.name
-          newWaterfallInputCopy.imageUrl = place.photos
-          console.log(newWaterfallInputCopy.imageUrl)
           setNewWaterfall(newWaterfallInputCopy)
         } else {
           const locationInputCopy = {...newLocationInput}
