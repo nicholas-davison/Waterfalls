@@ -13,16 +13,12 @@ export const NavBar = () => {
             {/* <Nav.Link href="/">All Waterfalls</Nav.Link> */}
             <Nav.Link href="/newfalls">New Falls</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
-            <NavDropdown title="Me" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="" onClick={() => {
+            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="" onClick={() => {
                     localStorage.removeItem("learning_user")
                     navigate("/login", { replace: true })
                 }}>
-                Logout
-              </NavDropdown.Item>
-            </NavDropdown>
+                Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
