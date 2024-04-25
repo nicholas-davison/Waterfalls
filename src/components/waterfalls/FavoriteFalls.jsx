@@ -42,7 +42,7 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
             const regionName = getRegionNameById(waterfallObj.location.regionId);
                 
             return (
-                <Card style={{ width: '18rem' }} key={waterfallObj.id}>
+                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 

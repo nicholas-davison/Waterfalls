@@ -1,15 +1,8 @@
-/* Import the google web fonts you want to use */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Quicksand&family=Roboto:wght@100&display=swap");
 
-/* FONTS
-font-family: "Nunito", sans-serif;
-font-family: "Quicksand", sans-serif;
-font-family: "Roboto", sans-serif; 
-*/
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-/* COLOR PALETTE */
-/* Feel free to change these values and create your own color palette! https://coolors.co/ is a great resource */
-:root {
+
+/* :root {
   --primary: #ffb400;
   --secondary: #00a6ed;
   --info: #7fb800;
@@ -19,7 +12,7 @@ font-family: "Roboto", sans-serif;
   --dark: #3b3b3b;
   --outline: #c3c0c0;
   --appBackground: #fbf9f9;
-}
+} */
 
 /* GLOBAL STYLES */
 body,
@@ -27,18 +20,30 @@ button,
 input,
 select,
 textarea {
-  font-family: "Nunito", sans-serif;
+  font-family: "Philosopher", sans-serif;
+}
+.philosopher-regular {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-body {
-  background-color: var(--appBackground);
-  margin: 0;
-  /* Integrate background image styling here */
- 
-/*   background-image: url("https://media.giphy.com/media/GHpaiUYyIjyYznDyvF/giphy.gif"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.philosopher-bold {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.philosopher-regular-italic {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.philosopher-bold-italic {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 h1,
@@ -47,7 +52,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto", serif;
+  font-family: "Philosopher", sans-serif;
+ 
 }
 
 /* This prevents all the links in the app from having default underline */
@@ -64,18 +70,18 @@ input:focus {
   outline: none;
 }
 
-/* GLOBAL STYLING FOR ALL THE BUTTONS BUTTONS */
+/* 
 button {
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
   color: var(--white);
   cursor: pointer;
-}
+} */
 
 /* These are all the color options for the buttons */
 /* If you change the color variables, be sure to change the hover colors to be a darker shade of the colors you chose*/
-.btn-primary {
+/* .btn-primary {
   background-color: var(--primary);
 }
 
@@ -105,4 +111,4 @@ button {
 
 .btn-info:hover {
   background-color: #71a500;
-}
+} */
