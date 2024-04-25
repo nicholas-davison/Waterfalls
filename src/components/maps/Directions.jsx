@@ -27,9 +27,12 @@
             const directionsService = new google.maps.DirectionsService()
             const directionsRenderer = new google.maps.DirectionsRenderer()
     
-            directionsService.route(DirectionsRequest, () => {
-                directionsRenderer.setMap(Map);
-            })
+            directionsService.route(DirectionsRequest, function(result, status) {
+                debugger
+                if (status == 'OK') {
+                  directionsRenderer.setDirections(result);
+                }
+              })
         }
       
       function calculateAndDisplayRoute(directionsService, directionsRenderer) {

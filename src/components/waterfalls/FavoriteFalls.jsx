@@ -53,7 +53,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
             <div className="page-header">
                 <h1>Favorites</h1>
                 {itinerary.length !== 0 ? (
-                    <Button variant="success" onClick={handleRouteClick}>Route Trip</Button>
+                    <Button variant="outline-success" onClick={handleRouteClick}>Route Trip</Button>
                 ) : (
                     ""
                 )}
