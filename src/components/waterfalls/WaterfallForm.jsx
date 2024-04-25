@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Alert, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { checkWaterfallByName, getWaterfallById, saveNewWaterfall, updateExistingWaterfall } from '../../services/WaterfallService'
+import { MapSearch } from '../maps/MapSearch'
+import "./Waterfall.css" 
 
 
 export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls}) => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
     const { waterfallId } = useParams()
+    const inputRef = useRef(null)
     const [newWaterfall, setNewWaterfall] = useState({
         name: "",
         userId: 0,
@@ -84,6 +87,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     return (
         <div>
         <h1>Add Waterfall</h1>
+        <MapSearch inputRef={inputRef} newWaterfall={newWaterfall} setNewWaterfall={setNewWaterfall}/>
         <Form className='newresource-form'>
         <Form.Group className="mb-3" controlId="formWaterfallName">
           <Form.Label>Waterfall Name</Form.Label>
@@ -93,9 +97,10 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
             value={newWaterfall.name} 
             name="name"
             onChange={handleTextChange}
+            ref={inputRef}
             />
         </Form.Group>
-
+        
         <Form.Group className="mb-3" controlId="formLocationSelect">
             <Form.Label>Location</Form.Label>
             <Form.Select aria-label="Waterfall location select" name="locationId" value={newWaterfall.locationId} onChange={handleIdChange}>
@@ -104,7 +109,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
                     <option value={location.id} key={location.id}>{location.name}</option>
                 ))}
             </Form.Select>
-            <Button variant="outline-secondary" id="button-addon2" onClick={() => navigate('/newlocation')}>
+            <Button variant="warning" id="button-addon2" onClick={() => navigate('/newlocation')}>
           Don't see your location?
         </Button>
         </Form.Group>

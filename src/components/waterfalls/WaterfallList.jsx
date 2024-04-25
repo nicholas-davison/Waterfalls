@@ -40,7 +40,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
     return (
         <>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <img src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tenneessee Map" width="80%"/>
+            <img className="image" src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tenneessee Map" width="80%"/>
         </div>
         <h1 className="site-header">Falls Finder</h1>
          <FilterBar 
@@ -57,15 +57,16 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             {filteredWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
             const regionName = getRegionNameById(waterfallObj.location.regionId);
-                
+            
+
             return (
                 <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
-                    src={`${waterfallObj.imageUrl}`}
+                    src={waterfallObj.imageUrl}
                     />
-                <Card.Body>
+                <Card.Body className="card-waterfall-detail">
                   <Card.Title>{waterfallObj.name}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>

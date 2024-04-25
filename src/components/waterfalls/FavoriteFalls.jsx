@@ -3,6 +3,7 @@ import { getUserWaterfallsByUserId, getWaterfallsByUserId } from "../../services
 import { Button, Card, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { Map } from "../maps/Map"
+import "./Waterfall.css" 
 
 export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
@@ -26,15 +27,22 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
     
     return (
         <div>
-            {authoredWaterfalls ? <h1>Authored Waterfalls</h1> : <h1>Favorites</h1>}
-            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>   
+            {authoredWaterfalls ? (
+            <h1>Authored Waterfalls</h1>
+            ) : (
+            <>
+            <h1>Favorites</h1>
+            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>  
+            </> 
+            )}
+               
             <Container className="card-container">
             {favoriteWaterfalls.map((waterfallObj) => {
                  // Get region name for this waterfall
             const regionName = getRegionNameById(waterfallObj.location.regionId);
                 
             return (
-                <Card style={{ width: '18rem' }} key={waterfallObj.id}>
+                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deleteWaterfall, getExpandedWaterfallById } from "../../services/WaterfallService"
 import { Button, Col, Container, Image } from "react-bootstrap"
 import { postNewFavorite, deleteFavoriteById } from "../../services/FavoriteFallsService"
+import "./Waterfall.css"
 
 
 export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
@@ -54,7 +55,7 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
             <Container>
                 <Col xs={10} md={8} className="image-container">
                     {currentWaterfall ? (
-                        <Image src={currentWaterfall.imageUrl} fluid />
+                        <Image src={currentWaterfall.imageUrl} fluid className="img-waterfall-card" />
                         ) : (
                         <p>Loading image...</p> // Render a loading message
                     )}
