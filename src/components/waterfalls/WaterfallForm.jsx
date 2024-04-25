@@ -86,7 +86,9 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
 
     return (
         <div>
-        <h1>Add Waterfall</h1>
+            <div className='page-header'>
+                <h1>Add Waterfall</h1>
+            </div>
         <MapSearch inputRef={inputRef} newWaterfall={newWaterfall} setNewWaterfall={setNewWaterfall}/>
         <Form className='newresource-form'>
         <Form.Group className="mb-3" controlId="formWaterfallName">

@@ -4,10 +4,12 @@ import { Button, Card, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { Map } from "../maps/Map"
 import "./Waterfall.css" 
+import { Directions } from "../maps/Directions"
 
-export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
+export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
     const navigate = useNavigate()
+    const [itinerary, setItinerary] = useState([])
 
     const getAndSetFavoriteWaterfalls = async () => {
         if (authoredWaterfalls) {
@@ -21,17 +23,41 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
         }
     }
 
+    const handleSetItinerary = (locationId) => {
+        const locale = allLocations.find((location) => location.id === locationId)
+        const itineraryCopy = [...itinerary]
+        const wayPoint = {lat: locale.lat, lng: locale.lng}
+        itineraryCopy.push(wayPoint)
+        setItinerary(itineraryCopy)
+    }
+
     useEffect(() => {
         getAndSetFavoriteWaterfalls()
     }, [allWaterfalls, currentUser, authoredWaterfalls])
     
+
+
+
+    //handle route on click
+    const handleRouteClick = () => {
+       Directions(itinerary, userProfile)
+    }
+    
+
     return (
         <div>
             {authoredWaterfalls ? (
             <h1>Authored Waterfalls</h1>
             ) : (
             <>
-            <h1>Favorites</h1>
+            <div className="page-header">
+                <h1>Favorites</h1>
+                {itinerary.length !== 0 ? (
+                    <Button variant="success" onClick={handleRouteClick}>Route Trip</Button>
+                ) : (
+                    ""
+                )}
+            </div>
             <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>  
             </> 
             )}
@@ -53,7 +79,14 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
+                    <div className="waterfallcard-btn-container">
+                        <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
+                        {!authoredWaterfalls ? (
+                            <Button variant="outline-warning" onClick={() => handleSetItinerary(waterfallObj.locationId)}>Add to Trip</Button>
+                            ) : (
+                                ""
+                            )}
+                    </div>
                 </Card.Body>
               </Card>
             )
@@ -62,3 +95,4 @@ export const FavoriteFalls = ({ currentUser, allWaterfalls, getRegionNameById, a
         </div>
     )
 }
+

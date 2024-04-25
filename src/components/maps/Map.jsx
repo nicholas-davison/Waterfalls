@@ -56,6 +56,6 @@ const initMap = async (fallsArray) => {
 };
 
 
-
   return <div id="map" style={{ width: '90%', height: '400px', margin: '0 auto'}}></div>;
+  
 };

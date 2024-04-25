@@ -34,7 +34,9 @@ export const Newlocation = ({getAndSetAllLocations}) => {
 
     return (
         <div>
-            <h1>Add Location</h1>
+            <div className="page-header">
+                <h1>Add Location</h1>
+            </div>
             <MapSearch inputRef={inputRef} setNewLocationInput={setNewLocationInput} newLocationInput={newLocationInput}/>
             <Form className="newresource-form">
                 <Form.Group className="mb-3" controlId="formlocation name">
