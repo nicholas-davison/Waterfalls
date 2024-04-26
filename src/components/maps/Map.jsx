@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 export const Map = ({favoriteWaterfalls, allLocations, directionsRequestObj}) => {
+  
   useEffect(() => {
     initMap(favoriteWaterfalls);
   }, [favoriteWaterfalls, directionsRequestObj]);

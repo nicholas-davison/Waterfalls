@@ -12,6 +12,7 @@ import { Newlocation } from "../components/locations/NewLocation"
 import { Profile } from "../components/profile/Profile"
 import { getUserProfileById } from "../services/userService"
 import { EditProfile } from "../components/profile/EditProfile"
+import { Directions } from "../components/maps/Directions"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -91,6 +92,7 @@ export const ApplicationViews = () => {
                     <Route path="edit" element={<WaterfallForm allLocations={allLocations} getAndSetAllWaterfalls={getAndSetAllWaterfalls} currentUser={currentUser}/>}/>
                 </Route> 
                 <Route path="/favorites" element={<FavoriteFalls currentUser={currentUser} userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById} authoredWaterfalls={false} allLocations={allLocations}/>}/>
+                <Route path="directions" element={<Directions/>}/>
                 <Route path="/newfalls" element={<WaterfallForm allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="/newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
                 <Route path="/profile" >
