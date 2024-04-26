@@ -10,6 +10,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
     const navigate = useNavigate()
     const [itinerary, setItinerary] = useState([])
+    const [directionsRequestObj, setDirectionsRequestObj] = useState(null)
 
     const getAndSetFavoriteWaterfalls = async () => {
         if (authoredWaterfalls) {
@@ -37,13 +38,13 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
     
 
 
-
     //handle route on click
     const handleRouteClick = () => {
-       Directions(itinerary, userProfile)
+       const directionsRequest = Directions(itinerary, userProfile)
+        setDirectionsRequestObj(directionsRequest)
     }
     
-
+    
     return (
         <div>
             {authoredWaterfalls ? (
@@ -58,7 +59,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
                     ""
                 )}
             </div>
-            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations}/>  
+            <Map favoriteWaterfalls={favoriteWaterfalls} allLocations={allLocations} directionsRequestObj={directionsRequestObj}/>  
             </> 
             )}
                

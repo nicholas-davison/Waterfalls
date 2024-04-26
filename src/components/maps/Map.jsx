@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-export const Map = ({favoriteWaterfalls, allLocations}) => {
+export const Map = ({favoriteWaterfalls, allLocations, directionsRequestObj}) => {
   useEffect(() => {
     initMap(favoriteWaterfalls);
-  }, [favoriteWaterfalls]);
+  }, [favoriteWaterfalls, directionsRequestObj]);
 
 let map;
 
@@ -11,6 +11,8 @@ const initMap = async (fallsArray) => {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker")
   const { PinElement } = await google.maps.importLibrary("marker")
+  const directionsService = new google.maps.DirectionsService()
+  const directionsRenderer = new google.maps.DirectionsRenderer()
 
 
   map = new Map(document.getElementById("map"), {
@@ -20,7 +22,21 @@ const initMap = async (fallsArray) => {
     mapTypeId: "terrain"
   });
 
+  directionsRenderer.setMap(map);
+
+  function calcRoute() {
+    directionsService.route(directionsRequestObj, function(result, status) {
+      if (status == 'OK') {
+        directionsRenderer.setDirections(result);
+      }
+    })
+  }
   
+ if (directionsRequestObj) {
+   calcRoute()
+   window.initMap = initMap
+ }
+
   fallsArray.forEach((falls) => {
 
     const customPin = new PinElement({
