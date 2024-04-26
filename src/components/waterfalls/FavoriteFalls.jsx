@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom"
 import { Map } from "../maps/Map"
 import "./Waterfall.css" 
 
-export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations }) => {
+export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegionNameById, authoredWaterfalls, allLocations, itinerary, setItinerary, directionsRequestObj, setDirectionsRequestObj }) => {
     const [favoriteWaterfalls, setFavoriteWaterfalls] = useState([])
     const navigate = useNavigate()
-    const [itinerary, setItinerary] = useState([])
-    const [directionsRequestObj, setDirectionsRequestObj] = useState(null)
+
 
     const getAndSetFavoriteWaterfalls = async () => {
         if (authoredWaterfalls) {

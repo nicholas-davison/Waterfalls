@@ -1,10 +1,14 @@
 import { Map } from "./Map"
-
-export const Directions = (itinerary, userProfile) => {
+import "./maps.css"
+export const Directions = ({allWaterfalls, allLocations, itinerary, directionsRequestObj}) => {
     
+
     return (
         <>
-            {<Map/>}
+            <h1 className="page-header">Waterfall Trip Yeah!</h1>
+            <div className="map-container">
+                {<Map directionsRequestObj={directionsRequestObj}/>}
+            </div>
         </>
     )
 }

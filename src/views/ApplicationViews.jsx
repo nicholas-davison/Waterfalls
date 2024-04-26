@@ -21,6 +21,8 @@ export const ApplicationViews = () => {
     const [allRegions, setAllRegions] = useState([])
     const [allDifficultyLevels, setAllDifficultyLevels] = useState([])
     const [allLocations, setAllLocations] = useState([])
+    const [itinerary, setItinerary] = useState([])
+    const [directionsRequestObj, setDirectionsRequestObj] = useState(null)
 
     //setting current user
     useEffect(() => {
@@ -91,12 +93,12 @@ export const ApplicationViews = () => {
                     <Route index element={<WaterfallDetail currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                     <Route path="edit" element={<WaterfallForm allLocations={allLocations} getAndSetAllWaterfalls={getAndSetAllWaterfalls} currentUser={currentUser}/>}/>
                 </Route> 
-                <Route path="/favorites" element={<FavoriteFalls currentUser={currentUser} userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById} authoredWaterfalls={false} allLocations={allLocations}/>}/>
-                <Route path="directions" element={<Directions/>}/>
+                <Route path="/favorites" element={<FavoriteFalls currentUser={currentUser} userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById} authoredWaterfalls={false} allLocations={allLocations} itinerary={itinerary} setItinerary={setItinerary} directionsRequestObj={directionsRequestObj} setDirectionsRequestObj={setDirectionsRequestObj}/>}/>
+                <Route path="directions" element={<Directions allWaterfalls={allWaterfalls} allLocations={allLocations} itinerary={itinerary} directionsRequestObj={directionsRequestObj}/>}/>
                 <Route path="/newfalls" element={<WaterfallForm allLocations={allLocations} currentUser={currentUser} getAndSetAllWaterfalls={getAndSetAllWaterfalls}/>}/>
                 <Route path="/newlocation" element={<Newlocation getAndSetAllLocations={getAndSetAllLocations}/>}/>
                 <Route path="/profile" >
-                    <Route index element={<Profile userProfile={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById}/>}/>
+                    <Route index element={<Profile userProfile={userProfile} allWaterfalls={allWaterfalls} allLocations={allLocations} getRegionNameById={getRegionNameById}/>}/>
                     <Route path="edit" element={<EditProfile userProfile={userProfile} getAndSetUserProfile={getAndSetUserProfile}/>}/>
                 </Route>
             </Route>

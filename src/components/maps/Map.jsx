@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 
 export const Map = ({favoriteWaterfalls, allLocations, directionsRequestObj}) => {
-  
+
   useEffect(() => {
-    initMap(favoriteWaterfalls);
+    if (favoriteWaterfalls ) {
+      initMap(favoriteWaterfalls);
+    } else {
+      initMap()
+    }
   }, [favoriteWaterfalls, directionsRequestObj]);
 
 let map;
@@ -23,8 +27,9 @@ const initMap = async (fallsArray) => {
     mapTypeId: "terrain"
   });
 
-  directionsRenderer.setMap(map);
-
+  
+  
+  
   function calcRoute() {
     directionsService.route(directionsRequestObj, function(result, status) {
       if (status == 'OK') {
@@ -33,11 +38,15 @@ const initMap = async (fallsArray) => {
     })
   }
   
- if (directionsRequestObj) {
+  if (directionsRequestObj) {
+   directionsRenderer.setMap(map);
+   directionsRenderer.setPanel((document.getElementById("directions-panel")))
    calcRoute()
    window.initMap = initMap
+
  }
 
+ if (favoriteWaterfalls) {
   fallsArray.forEach((falls) => {
 
     const customPin = new PinElement({
@@ -70,9 +79,19 @@ const initMap = async (fallsArray) => {
       infowindow.open(map, marker);
     });
   });
+}
 };
 
 
-  return <div id="map" style={{ width: '90%', height: '400px', margin: '0 auto'}}></div>;
+  return (
+    <div>
+       
+        <div id="container">
+        <div id="map" style={{ width: '90%', height: '400px', margin: '0 auto'}}></div>
+        
+          <div id="directions-panel"></div>
+        </div>
+    </div>
+  );
   
 };
