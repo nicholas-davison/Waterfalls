@@ -25,10 +25,6 @@ export const MapSearch = ({ newLocationInput, setNewLocationInput, inputRef, new
           map.setCenter(place.geometry.location);
           map.setZoom(15);
         }
-/*         setClickedLocation({
-          latitude: place.geometry.location.lat(),
-          longitude: place.geometry.location.lng(),
-        }); */
         if (newWaterfall) {
           const newWaterfallInputCopy = {...newWaterfall}
           newWaterfallInputCopy.name = place.name
