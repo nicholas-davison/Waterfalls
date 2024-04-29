@@ -112,7 +112,10 @@ h1 {
 }
 
 .carousel-image-container {
-    height: 500px; /* Adjust this value as needed */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 600px; /* Adjust this value as needed */
     overflow: hidden;
     max-width: 100%; /* Ensure the image doesn't exceed the container's width */
     max-height: 100%; /* Ensure the image doesn't exceed the container's height */
@@ -123,5 +126,6 @@ h1 {
 .carousel-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This ensures the entire image is visible within the container */
+    object-fit: fill; /* This ensures the entire image is visible within the container */
+
 }

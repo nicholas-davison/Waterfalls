@@ -60,7 +60,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             
 
             return (
-                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
+                <Card className="card-waterfall" style={{ width: '20rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
