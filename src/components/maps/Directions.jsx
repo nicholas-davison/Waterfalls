@@ -3,7 +3,6 @@ import "./maps.css"
 export const Directions = ({allWaterfalls, allLocations, itinerary, directionsRequestObj}) => {
     
 const waterfallDestination = allWaterfalls.find((waterfall) => waterfall.location.lat === directionsRequestObj.destination.lat && waterfall.location.lng === directionsRequestObj.destination.lng)
-console.log(waterfallDestination)
 const waterfallName = waterfallDestination.name
 
 

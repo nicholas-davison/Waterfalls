@@ -37,10 +37,11 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
+
     return (
         <>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <img className="image" src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tenneessee Map" width="80%"/>
+        <img className="image" src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
         </div>
         <h1 className="site-header">Falls Finder</h1>
          <FilterBar 
