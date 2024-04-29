@@ -3,7 +3,7 @@ import "./profile.css"
 import { FavoriteFalls } from "../waterfalls/FavoriteFalls"
 import { useNavigate } from "react-router-dom"
 
-export const Profile = ({userProfile, allWaterfalls, getRegionNameById}) => {
+export const Profile = ({userProfile, allWaterfalls, allLocations, getRegionNameById}) => {
     const navigate = useNavigate()
     return (
         <>
@@ -16,7 +16,7 @@ export const Profile = ({userProfile, allWaterfalls, getRegionNameById}) => {
                 <Card.Footer>{userProfile.email}</Card.Footer>
             </Card>
 
-            <FavoriteFalls currentUser={userProfile} allWaterfalls={allWaterfalls} getRegionNameById={getRegionNameById} authoredWaterfalls={true}/>
+            <FavoriteFalls currentUser={userProfile} allWaterfalls={allWaterfalls} allLocations={allLocations} getRegionNameById={getRegionNameById} authoredWaterfalls={true}/>
         </>
     )
 }

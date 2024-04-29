@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
 
-export const Map = ({favoriteWaterfalls, allLocations}) => {
+export const Map = ({favoriteWaterfalls, allLocations, directionsRequestObj}) => {
+
   useEffect(() => {
-    initMap(favoriteWaterfalls);
-  }, [favoriteWaterfalls]);
+    if (favoriteWaterfalls ) {
+      initMap(favoriteWaterfalls);
+    } else {
+      initMap()
+    }
+  }, [favoriteWaterfalls, directionsRequestObj]);
 
 let map;
 
@@ -11,6 +16,8 @@ const initMap = async (fallsArray) => {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker")
   const { PinElement } = await google.maps.importLibrary("marker")
+  const directionsService = new google.maps.DirectionsService()
+  const directionsRenderer = new google.maps.DirectionsRenderer()
 
 
   map = new Map(document.getElementById("map"), {
@@ -21,6 +28,25 @@ const initMap = async (fallsArray) => {
   });
 
   
+  
+  
+  function calcRoute() {
+    directionsService.route(directionsRequestObj, function(result, status) {
+      if (status == 'OK') {
+        directionsRenderer.setDirections(result);
+      }
+    })
+  }
+  
+  if (directionsRequestObj) {
+   directionsRenderer.setMap(map);
+   directionsRenderer.setPanel((document.getElementById("directions-panel")))
+   calcRoute()
+   window.initMap = initMap
+
+ }
+
+ if (favoriteWaterfalls) {
   fallsArray.forEach((falls) => {
 
     const customPin = new PinElement({
@@ -53,9 +79,19 @@ const initMap = async (fallsArray) => {
       infowindow.open(map, marker);
     });
   });
+}
 };
 
 
-
-  return <div id="map" style={{ width: '90%', height: '400px', margin: '0 auto'}}></div>;
+  return (
+    <div>
+       
+        <div id="container">
+        <div id="map" style={{ width: '90%', height: '400px', margin: '0 auto'}}></div>
+        
+          <div id="directions-panel"></div>
+        </div>
+    </div>
+  );
+  
 };

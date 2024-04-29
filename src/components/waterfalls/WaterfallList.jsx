@@ -11,6 +11,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
     const [searchTerm, setSearchTerm] = useState("")
+    const [buttonClicked, setButtonClicked] = useState(false)
     const navigate = useNavigate()
 
     //useEffect to set filtered waterfalls by filterbar

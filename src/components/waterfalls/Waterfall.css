@@ -73,10 +73,6 @@
     transition: background-color 0.3s ease;
 }
 
-.card-waterfall .btn:hover {
-    background-color: #4caf50;
-    color: #fff;
-}
 
 .waterfall-detail-header {
     display: flex;
@@ -106,5 +102,17 @@
 }
 
 h1 {
-    margin: 15px;
+    margin: 20px;
+}
+
+.waterfallcard-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-header {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
