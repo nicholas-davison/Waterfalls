@@ -11,7 +11,6 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
     const [searchTerm, setSearchTerm] = useState("")
-    const [buttonClicked, setButtonClicked] = useState(false)
     const navigate = useNavigate()
 
     //useEffect to set filtered waterfalls by filterbar
@@ -65,7 +64,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
-                    src={waterfallObj.imageUrl}
+                    src={waterfallObj.imageUrl[0]}
                     />
                 <Card.Body className="card-waterfall-detail">
                   <Card.Title>{waterfallObj.name}</Card.Title>

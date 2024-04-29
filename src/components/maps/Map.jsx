@@ -68,7 +68,7 @@ const initMap = async (fallsArray) => {
     const contentString = 
       `<div>
         <h4>${falls.name}</h4>
-        <img src="${falls.imageUrl}" alt="${falls.name}" style="max-width: 200px;" />
+        <img src="${falls.imageUrl[0]}" alt="${falls.name}" style="max-width: 200px;" />
       </div>`;
     const infowindow = new google.maps.InfoWindow({
       content: contentString,

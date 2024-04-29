@@ -7,12 +7,6 @@
     
 }
 
-.img-waterfall-card {
-    max-width: 100%; /* Ensure the image doesn't exceed the container's width */
-    max-height: 100%; /* Ensure the image doesn't exceed the container's height */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 .image {
     mix-blend-mode: multiply;
     opacity: 1;
@@ -115,4 +109,19 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.carousel-image-container {
+    height: 500px; /* Adjust this value as needed */
+    overflow: hidden;
+    max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+    max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the entire image is visible within the container */
 }

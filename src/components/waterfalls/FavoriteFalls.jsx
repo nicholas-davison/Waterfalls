@@ -101,7 +101,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
                 <Card.Img 
                     className="img-waterfall-card" 
                     variant="top" 
-                    src={`${waterfallObj.imageUrl}`}
+                    src={`${waterfallObj.imageUrl[0]}`}
                     />
                 <Card.Body>
                   <Card.Title>{waterfallObj.name}</Card.Title>
