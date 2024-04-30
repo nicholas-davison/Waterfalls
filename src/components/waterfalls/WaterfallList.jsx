@@ -61,21 +61,21 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             
 
             return (
-            <Button variant="none" onClick={() => navigate(`/${waterfallObj.id}`)}>    
-                <Card className="card-waterfall" style={{ width: '20rem' }} key={waterfallObj.id}>
-                <Card.Img 
-                    className="img-waterfall-card" 
-                    variant="top" 
-                    src={waterfallObj.imageUrl[0]}
-                    />
-                <Card.Body className="card-waterfall-detail">
-                  <Card.Title>{waterfallObj.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                </Card.Body>
-              </Card>
-            </Button> 
+                <div key={waterfallObj.id} onClick={() => navigate(`/${waterfallObj.id}`)} style={{ cursor: 'pointer' }}>
+                    <Card className="card-waterfall" style={{ width: '20rem' }} >
+                        <Card.Img 
+                            className="img-waterfall-card" 
+                            variant="top" 
+                            src={waterfallObj.imageUrl[0]}
+                            />
+                        <Card.Body className="card-waterfall-detail">
+                        <Card.Title>{waterfallObj.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
+                        </Card.Body>
+                    </Card>
+                </div>
             )
         })}
         </Container>
