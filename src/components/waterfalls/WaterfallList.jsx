@@ -61,6 +61,7 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
             
 
             return (
+            <Button variant="none" onClick={() => navigate(`/${waterfallObj.id}`)}>    
                 <Card className="card-waterfall" style={{ width: '20rem' }} key={waterfallObj.id}>
                 <Card.Img 
                     className="img-waterfall-card" 
@@ -72,9 +73,9 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
                   <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
                 </Card.Body>
               </Card>
+            </Button> 
             )
         })}
         </Container>

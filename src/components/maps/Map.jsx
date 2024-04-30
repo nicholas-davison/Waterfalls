@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import "./maps.css"
 export const Map = ({favoriteWaterfalls, allLocations, directionsRequestObj}) => {
 
   useEffect(() => {

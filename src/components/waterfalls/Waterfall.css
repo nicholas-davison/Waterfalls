@@ -27,21 +27,27 @@
     gap: 10px;
     margin: 30px 0px;
     justify-items: center;
+
 }
 
 .card-waterfall {
     width: 300px;
     border-radius: 15px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform .3s ease, background-color 0.3s ease, box-shadow .3s ease;
     font-family: Philosopher, sans-serif;
+    background-image: none; 
+    background-size: cover; 
 }
 .card-waterfall .mb-2.text-muted {
     font-family: sans-serif;
 }
 .card-waterfall:hover {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
+    background-color: aliceblue;
+    box-shadow: 0 0 20px 15px  rgba(0, 0, 0, 0.1);
 }
+
 
 .card-waterfall .card-body {
     padding: 20px;
