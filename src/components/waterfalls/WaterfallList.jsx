@@ -12,6 +12,8 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
+    const [fadeIn, setFadeIn] = useState(false)
+
 
     //useEffect to set filtered waterfalls by filterbar
     useEffect(() => {
@@ -37,11 +39,15 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
+    useEffect(() => {
+        setFadeIn(true);
+    }, []);    
+
 
     return (
         <>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <img className="image" src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
+        <img className={`image ${fadeIn ? "fade-in" : ""}`} src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
         </div>
         <h1 className="site-header">Falls Finder</h1>
          <FilterBar 

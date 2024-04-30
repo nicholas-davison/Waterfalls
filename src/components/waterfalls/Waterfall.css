@@ -9,8 +9,11 @@
 
 .image {
     mix-blend-mode: multiply;
+    opacity: 0; 
+    transition: opacity 1s ease; 
+}
+.fade-in {
     opacity: 1;
-    
 }
 
 .site-header {
@@ -30,6 +33,7 @@
 
 }
 
+
 .card-waterfall {
     width: 300px;
     border-radius: 15px;
@@ -39,12 +43,19 @@
     background-image: none; 
     background-size: cover; 
 }
+
+.img-waterfall-card {
+    width: 100%; /* Ensure the image fills the entire width of the card */
+    height: 15rem; /* Adjust the height of the image */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+}
+
 .card-waterfall .mb-2.text-muted {
     font-family: sans-serif;
 }
 .card-waterfall:hover {
     transform: translateY(-15px);
-    background-color: aliceblue;
+    background-color: rgb(225, 241, 255);
     box-shadow: 0 0 20px 15px  rgba(0, 0, 0, 0.1);
 }
 
@@ -65,14 +76,14 @@
     margin-bottom: 5px;
 }
 
-.card-waterfall .btn {
+/* .card-waterfall .btn {
     margin-top: 10px;
     padding: 8px 16px;
     font-size: 1rem;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-
+ */
 
 .waterfall-detail-header {
     display: flex;
