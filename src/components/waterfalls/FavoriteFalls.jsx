@@ -21,10 +21,15 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
             })
         }
     }
+
+
+    
     const handleSetItinerary = (locale) => {
+            //if the itinerary already contains the waypoint being added, filter it out and update the itinerary without it (handling remove from itinerary)
         if (itinerary.some((waypoint) => waypoint.lat === locale.lat && waypoint.lng === locale.lng)) {
             const updatedItinerary = itinerary.filter((waypoint) => !(waypoint.lat === locale.lat && waypoint.lng === locale.lng));
             setItinerary(updatedItinerary);
+            //if the waypoints dont exist in the itinerary, add them
         } else {
             const itineraryCopy = [...itinerary];
             const wayPoint = { lat: locale.lat, lng: locale.lng };
@@ -72,7 +77,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
     
     
     return (
-        <div>
+        <div className="page-container">
             {authoredWaterfalls ? (
             <h1>Authored Waterfalls</h1>
             ) : (
@@ -97,32 +102,39 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
             const regionName = getRegionNameById(waterfallObj.location.regionId);
                 
             return (
-                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
-                <Card.Img 
-                    className="img-waterfall-card" 
-                    variant="top" 
-                    src={`${waterfallObj.imageUrl}`}
-                    />
-                <Card.Body>
-                  <Card.Title>{waterfallObj.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                    <div className="waterfallcard-btn-container">
-                        <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
-                        {!authoredWaterfalls ? (
-                           itinerary.some((waypoint) => waypoint.lat === localeWaypoint.lat && waypoint.lng === localeWaypoint.lng) ? (
-                            <Button variant="outline-danger" onClick={() => handleSetItinerary(locale)}>Remove from Trip</Button>
-                           ) : (
+                <div key={waterfallObj.id} onClick={() => navigate(`/${waterfallObj.id}`)} style={{ cursor: 'pointer' }}>
+                    <Card className="card-waterfall" style={{ width: '20rem' }} >
+                        <Card.Img 
+                            className="img-waterfall-card" 
+                            variant="top" 
+                            src={`${waterfallObj.imageUrl[0]}`}
+                            />
+                        <Card.Body>
+                        <Card.Title>{waterfallObj.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
+                            <div className="waterfallcard-btn-container">
+                                {!authoredWaterfalls ? (
+                                itinerary.some((waypoint) => waypoint.lat === localeWaypoint.lat && waypoint.lng === localeWaypoint.lng) ? (
+                                    <Button variant="outline-danger" onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleSetItinerary(locale)
+                                    }}>Remove from Trip</Button>
+                                ) : (
 
-                               <Button variant="outline-warning" onClick={() => handleSetItinerary(locale)}>Add to Trip</Button>
-                           )
-                            ) : (
-                                ""
-                            )}
-                    </div>
-                </Card.Body>
-              </Card>
+                                    <Button variant="outline-warning" onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleSetItinerary(locale)
+                                    }}>Add to Trip</Button>
+                                )
+                                    ) : (
+                                        ""
+                                    )}
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </div>
             )
         })}
         </Container>

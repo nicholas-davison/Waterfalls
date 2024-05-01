@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteWaterfall, getExpandedWaterfallById } from "../../services/WaterfallService"
-import { Button, Col, Container, Image } from "react-bootstrap"
+import { Button, Carousel, Col, Container, Image } from "react-bootstrap"
 import { postNewFavorite, deleteFavoriteById } from "../../services/FavoriteFallsService"
 import "./Waterfall.css"
 
@@ -51,8 +51,8 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
     }
 
     return (
-        <div>
-            <Container>
+        <div className="page-container">
+{/*             <Container>
                 <Col xs={10} md={8} className="image-container">
                     {currentWaterfall ? (
                         <Image src={currentWaterfall.imageUrl} fluid className="img-waterfall-card" />
@@ -60,7 +60,22 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
                         <p>Loading image...</p> // Render a loading message
                     )}
                 </Col>
-            </Container>
+            </Container> */}
+                {currentWaterfall && currentWaterfall.imageUrl ? (
+                    <Col xs={11} md={9} className="image-container">
+                        <Carousel fade>
+                            {currentWaterfall.imageUrl.map((image, index) => (
+                                <Carousel.Item key={index}>
+                                    <div className="carousel-image-container">
+                                        <Image src={image} fluid className="carousel-image" />
+                                    </div>
+                                </Carousel.Item>
+                            ))}
+                        </Carousel>
+                    </Col>
+                        ) : (
+                        <p>Loading image...</p> // Render a loading message
+                    )}
             <Container>
                 <div className="waterfall-detail-header">
                     <h1>{currentWaterfall.name}</h1>

@@ -15,7 +15,7 @@ export const NavBar = () => {
             <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link href="" onClick={() => {
-                    localStorage.removeItem("learning_user")
+                    localStorage.removeItem("waterfall_user")
                     navigate("/login", { replace: true })
                 }}>
                 Logout</Nav.Link>

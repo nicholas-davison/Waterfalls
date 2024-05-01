@@ -18,7 +18,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
         locationId: 0,
         difficultyLevelId: 0,
         description: "",
-        imageUrl: "",
+        imageUrl: [],
     })
 
     //if there is an existing waterfallId, get that waterfall and set is as the new waterfall
@@ -45,10 +45,22 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
 
     //update string-based properties of state 
     const handleTextChange = (event) => {
-        const stateCopy = {...newWaterfall}
-        stateCopy[event.target.name] = event.target.value
-        setNewWaterfall(stateCopy)
+        const { name, value } = event.target;
+        const delimiter = ';'
+        if (name === "imageUrl") {
+            const urls = value.split(delimiter).map(url => url.trim());
+            setNewWaterfall(prevState => ({
+                ...prevState,
+                [name]: urls,
+            }));
+        } else {
+            setNewWaterfall(prevState => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
     }
+
     //update integer-based properties of state 
     const handleIdChange = (event) => {
         const stateCopy = {...newWaterfall}
@@ -85,7 +97,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     }
 
     return (
-        <div>
+        <div className="page-container">
             <div className='page-header'>
                 <h1>Add Waterfall</h1>
             </div>
@@ -139,18 +151,18 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formWaterfall Url">
-            <Form.Label>Image URL</Form.Label>
-            <Form.Control 
-                className="form-url" 
-                type="text" 
-                placeholder="Image URL" 
-                value={newWaterfall.imageUrl}
+            <Form.Label>Image URLs</Form.Label>
+            <Form.Control
+                className="form-url"
+                type="text"
+                placeholder="Image URLs (separated by semicolon)"
+                value={newWaterfall.imageUrl.join('; ')} 
                 name='imageUrl'
                 onChange={handleTextChange}
-                />
+            />
         </Form.Group>
-
-        <Button variant="success" type="submit" onClick={handleSaveNewWaterfall}>
+        
+        <Button className="mb-3" variant="success" type="submit" onClick={handleSaveNewWaterfall}>
           Submit
         </Button>
       </Form>

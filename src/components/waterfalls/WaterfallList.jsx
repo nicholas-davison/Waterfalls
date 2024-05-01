@@ -11,8 +11,9 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(null)
     const [searchTerm, setSearchTerm] = useState("")
-    const [buttonClicked, setButtonClicked] = useState(false)
     const navigate = useNavigate()
+    const [fadeIn, setFadeIn] = useState(false)
+
 
     //useEffect to set filtered waterfalls by filterbar
     useEffect(() => {
@@ -38,46 +39,52 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
-    return (
-        <>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <img className="image" src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tenneessee Map" width="80%"/>
-        </div>
-        <h1 className="site-header">Falls Finder</h1>
-         <FilterBar 
-            allRegions={allRegions} 
-            setSelectedRegion={setSelectedRegion} 
-            selectedRegion={selectedRegion} 
-            allDifficultyLevels={allDifficultyLevels} 
-            selectedDifficultyLevel={selectedDifficultyLevel} 
-            setSelectedDifficultyLevel={setSelectedDifficultyLevel}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            />
-         <Container className="card-container">
-            {filteredWaterfalls.map((waterfallObj) => {
-                 // Get region name for this waterfall
-            const regionName = getRegionNameById(waterfallObj.location.regionId);
-            
+    useEffect(() => {
+        setFadeIn(true);
+    }, []);    
 
-            return (
-                <Card className="card-waterfall" style={{ width: '18rem' }} key={waterfallObj.id}>
-                <Card.Img 
-                    className="img-waterfall-card" 
-                    variant="top" 
-                    src={waterfallObj.imageUrl}
-                    />
-                <Card.Body className="card-waterfall-detail">
-                  <Card.Title>{waterfallObj.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
-                  <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                  <Button variant="outline-success" onClick={() => navigate(`/${waterfallObj.id}`)}>View Details</Button>
-                </Card.Body>
-              </Card>
-            )
-        })}
-        </Container>
-        </>
+
+    return (
+        <div className="page-container">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img className={`image ${fadeIn ? "fade-in" : ""}`} src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
+            </div>
+            <h1 className="site-header">Falls Finder</h1>
+            <FilterBar 
+                allRegions={allRegions} 
+                setSelectedRegion={setSelectedRegion} 
+                selectedRegion={selectedRegion} 
+                allDifficultyLevels={allDifficultyLevels} 
+                selectedDifficultyLevel={selectedDifficultyLevel} 
+                setSelectedDifficultyLevel={setSelectedDifficultyLevel}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                />
+            <Container className="card-container">
+                {filteredWaterfalls.map((waterfallObj) => {
+                    // Get region name for this waterfall
+                const regionName = getRegionNameById(waterfallObj.location.regionId);
+                
+
+                return (
+                    <div key={waterfallObj.id} onClick={() => navigate(`/${waterfallObj.id}`)} style={{ cursor: 'pointer' }}>
+                        <Card className="card-waterfall" style={{ width: '20rem' }} >
+                            <Card.Img 
+                                className="img-waterfall-card" 
+                                variant="top" 
+                                src={waterfallObj.imageUrl[0]}
+                                />
+                            <Card.Body className="card-waterfall-detail">
+                            <Card.Title>{waterfallObj.name}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                )
+            })}
+            </Container>
+        </div>
     )
 }
