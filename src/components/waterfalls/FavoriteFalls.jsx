@@ -77,7 +77,7 @@ export const FavoriteFalls = ({ currentUser, userProfile, allWaterfalls, getRegi
     
     
     return (
-        <div>
+        <div className="page-container">
             {authoredWaterfalls ? (
             <h1>Authored Waterfalls</h1>
             ) : (

@@ -51,7 +51,7 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
     }
 
     return (
-        <div>
+        <div className="page-container">
 {/*             <Container>
                 <Col xs={10} md={8} className="image-container">
                     {currentWaterfall ? (

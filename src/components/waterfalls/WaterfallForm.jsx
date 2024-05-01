@@ -97,7 +97,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
     }
 
     return (
-        <div>
+        <div className="page-container">
             <div className='page-header'>
                 <h1>Add Waterfall</h1>
             </div>
@@ -162,7 +162,7 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
             />
         </Form.Group>
         
-        <Button variant="success" type="submit" onClick={handleSaveNewWaterfall}>
+        <Button className="mb-3" variant="success" type="submit" onClick={handleSaveNewWaterfall}>
           Submit
         </Button>
       </Form>

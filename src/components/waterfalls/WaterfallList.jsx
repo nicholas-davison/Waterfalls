@@ -45,46 +45,46 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
 
 
     return (
-        <>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <img className={`image ${fadeIn ? "fade-in" : ""}`} src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
-        </div>
-        <h1 className="site-header">Falls Finder</h1>
-         <FilterBar 
-            allRegions={allRegions} 
-            setSelectedRegion={setSelectedRegion} 
-            selectedRegion={selectedRegion} 
-            allDifficultyLevels={allDifficultyLevels} 
-            selectedDifficultyLevel={selectedDifficultyLevel} 
-            setSelectedDifficultyLevel={setSelectedDifficultyLevel}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            />
-         <Container className="card-container">
-            {filteredWaterfalls.map((waterfallObj) => {
-                 // Get region name for this waterfall
-            const regionName = getRegionNameById(waterfallObj.location.regionId);
-            
+        <div className="page-container">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img className={`image ${fadeIn ? "fade-in" : ""}`} src={"https://gisgeography.com/wp-content/uploads/2013/02/Tennessee-Satellite-Map.jpg"} alt="Tennessee Map" width="80%"/>
+            </div>
+            <h1 className="site-header">Falls Finder</h1>
+            <FilterBar 
+                allRegions={allRegions} 
+                setSelectedRegion={setSelectedRegion} 
+                selectedRegion={selectedRegion} 
+                allDifficultyLevels={allDifficultyLevels} 
+                selectedDifficultyLevel={selectedDifficultyLevel} 
+                setSelectedDifficultyLevel={setSelectedDifficultyLevel}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                />
+            <Container className="card-container">
+                {filteredWaterfalls.map((waterfallObj) => {
+                    // Get region name for this waterfall
+                const regionName = getRegionNameById(waterfallObj.location.regionId);
+                
 
-            return (
-                <div key={waterfallObj.id} onClick={() => navigate(`/${waterfallObj.id}`)} style={{ cursor: 'pointer' }}>
-                    <Card className="card-waterfall" style={{ width: '20rem' }} >
-                        <Card.Img 
-                            className="img-waterfall-card" 
-                            variant="top" 
-                            src={waterfallObj.imageUrl[0]}
-                            />
-                        <Card.Body className="card-waterfall-detail">
-                        <Card.Title>{waterfallObj.name}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
-                        </Card.Body>
-                    </Card>
-                </div>
-            )
-        })}
-        </Container>
-        </>
+                return (
+                    <div key={waterfallObj.id} onClick={() => navigate(`/${waterfallObj.id}`)} style={{ cursor: 'pointer' }}>
+                        <Card className="card-waterfall" style={{ width: '20rem' }} >
+                            <Card.Img 
+                                className="img-waterfall-card" 
+                                variant="top" 
+                                src={waterfallObj.imageUrl[0]}
+                                />
+                            <Card.Body className="card-waterfall-detail">
+                            <Card.Title>{waterfallObj.name}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">{regionName} Tennessee</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">{waterfallObj.location.name}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">{waterfallObj.difficultyLevel.type}</Card.Subtitle>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                )
+            })}
+            </Container>
+        </div>
     )
 }
