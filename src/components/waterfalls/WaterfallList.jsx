@@ -39,9 +39,13 @@ export const WaterfallList = ({allWaterfalls, allRegions, allDifficultyLevels, g
         setFilteredWaterfalls(filteredFalls);
         }, [allWaterfalls, selectedRegion, selectedDifficultyLevel, searchTerm])
 
-    useEffect(() => {
-        setFadeIn(true);
-    }, []);    
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                setFadeIn(true);
+            }, 100)
+    
+            return () => clearTimeout(timer);
+        }, [])   
 
 
     return (
