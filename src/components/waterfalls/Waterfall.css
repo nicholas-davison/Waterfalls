@@ -152,3 +152,7 @@ h1 {
 .mb-3 {
     margin: 0px 50px;
 }
+
+.cat-image {
+    text-align: center;
+}

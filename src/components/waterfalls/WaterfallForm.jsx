@@ -38,8 +38,11 @@ export const WaterfallForm = ({allLocations, currentUser, getAndSetAllWaterfalls
             <p>
               Please make sure all fields and dropdowns are completed before submitting your new waterfall.
             </p>
+            <div className="cat-image">
+                <img src="https://media.giphy.com/media/B7ppUExX92PjW/giphy.gif" alt="watercat" style={{ width: '700px' }} />
+            </div>
           </Alert>
-        );
+        )
       }
 
 
