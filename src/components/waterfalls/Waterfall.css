@@ -79,15 +79,6 @@
     margin-bottom: 5px;
 }
 
-/* .card-waterfall .btn {
-    margin-top: 10px;
-    padding: 8px 16px;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
- */
-
 .waterfall-detail-header {
     display: flex;
     justify-content: space-between;
@@ -145,7 +136,6 @@ h1 {
 
 .carousel-image {
     width: 1300px;
-    
     object-fit: fill; /* This ensures the entire image is visible within the container */
 
 }

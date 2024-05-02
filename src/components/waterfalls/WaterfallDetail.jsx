@@ -52,15 +52,6 @@ export const WaterfallDetail = ({ currentUser, getAndSetAllWaterfalls }) => {
 
     return (
         <div className="page-container">
-{/*             <Container>
-                <Col xs={10} md={8} className="image-container">
-                    {currentWaterfall ? (
-                        <Image src={currentWaterfall.imageUrl} fluid className="img-waterfall-card" />
-                        ) : (
-                        <p>Loading image...</p> // Render a loading message
-                    )}
-                </Col>
-            </Container> */}
                 {currentWaterfall && currentWaterfall.imageUrl ? (
                     <Col xs={11} md={9} className="image-container">
                         <Carousel fade>
