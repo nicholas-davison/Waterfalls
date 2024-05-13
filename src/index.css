@@ -15,10 +15,20 @@
 } */
 
 /* GLOBAL STYLES */
+
+/* #DFE6DA  */
+
+
+.allstuff {
+  background-color: #e4e7e2;
+  min-height: 100vh;
+}
+
 body,
 button,
 input,
 select,
+
 textarea {
   font-family: "Philosopher", sans-serif;
 }
