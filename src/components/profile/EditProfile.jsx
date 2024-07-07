@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { saveUserProfileChanges } from "../../services/userService"
+import "./profile.css"
 
 export const EditProfile = ({userProfile, getAndSetUserProfile}) => {
     const [updatedProfileInfo, setUpdatedProfileInfo] = useState({id: userProfile.id, name: userProfile.name, address: userProfile.address, email: userProfile.email})

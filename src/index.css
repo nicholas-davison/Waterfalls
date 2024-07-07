@@ -15,10 +15,20 @@
 } */
 
 /* GLOBAL STYLES */
+
+/* #DFE6DA  */
+
+
+.allstuff {
+  background-color: #e4e7e2;
+  min-height: 100vh;
+}
+
 body,
 button,
 input,
 select,
+
 textarea {
   font-family: "Philosopher", sans-serif;
 }
@@ -69,47 +79,3 @@ a:visited {
 input:focus {
   outline: none;
 }
-
-
-/* 
-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  color: var(--white);
-  cursor: pointer;
-} */
-
-/* These are all the color options for the buttons */
-/* If you change the color variables, be sure to change the hover colors to be a darker shade of the colors you chose*/
-/* .btn-primary {
-  background-color: var(--primary);
-}
-
-.btn-primary:hover {
-  background-color: #e5a000;
-}
-
-.btn-secondary {
-  background-color: var(--secondary);
-}
-
-.btn-secondary:hover {
-  background-color: #0097d7;
-}
-
-.btn-warning {
-  background-color: var(--warning);
-}
-
-.btn-warning:hover {
-  background-color: #e14617;
-}
-
-.btn-info {
-  background-color: var(--info);
-}
-
-.btn-info:hover {
-  background-color: #71a500;
-} */

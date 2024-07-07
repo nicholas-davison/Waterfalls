@@ -13,7 +13,9 @@ export const App = () => {
       path="*" 
       element={
         <Authorized>
+          <div className="allstuff">
           <ApplicationViews/>
+          </div>
         </Authorized>
       }
       />

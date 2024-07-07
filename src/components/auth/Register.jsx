@@ -7,23 +7,17 @@ export const Register = (props) => {
   const [user, setUser] = useState({
     email: "",
     name: "",
-    cohort: 0,
+    address: "",
   })
   let navigate = useNavigate()
 
   const registerNewUser = () => {
-    const newUser = {
-      ...user,
-      cohort: parseInt(user.cohort),
-    }
-
-    createUser(newUser).then((createdUser) => {
+    createUser(user).then((createdUser) => {
       if (createdUser.hasOwnProperty("id")) {
         localStorage.setItem(
           "waterfall_user",
           JSON.stringify({
             id: createdUser.id,
-            staff: createdUser.isStaff,
           })
         )
 
@@ -86,10 +80,10 @@ export const Register = (props) => {
           <div>
             <input
               onChange={updateUser}
-              type="number"
-              id="cohort"
+              type="text"
+              id="address"
               className="auth-form-input"
-              placeholder="Cohort #"
+              placeholder="Address"
               required
             />
           </div>

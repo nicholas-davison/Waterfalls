@@ -1,11 +1,8 @@
 .custom-navbar {
 background-color:#5d6c3c;
 color: white;
-background: linear-gradient(to right, #5d6c3c 30%, white 80%)
+background: linear-gradient(to right, #5d6c3c 30%, #e4e7e2 80%)
 }
-
-
-/* https://media.giphy.com/media/GHpaiUYyIjyYznDyvF/giphy.gif */
 
 .nav-brand {
     
