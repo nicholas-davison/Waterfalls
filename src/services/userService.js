@@ -1,11 +1,11 @@
 export const getUserByEmail = (email) => {
-  return fetch(`http://localhost:8088/users?email=${email}`).then((res) =>
+  return fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/users?email=${email}`).then((res) =>
     res.json()
   )
 }
 
 export const createUser = (user) => {
-  return fetch("http://localhost:8088/users", {
+  return fetch("https://fallsfinder-api-adhim.ondigitalocean.app/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -15,11 +15,11 @@ export const createUser = (user) => {
 }
 
 export const getUserProfileById = async (userId) => {
-  return await fetch(`http://localhost:8088/users/${userId}`).then(res => res.json())
+  return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/users/${userId}`).then(res => res.json())
 }
 
 export const saveUserProfileChanges = async (userObj) => {
-  return await fetch(`http://localhost:8088/users/${userObj.id}`, {
+  return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/users/${userObj.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"

@@ -1,5 +1,5 @@
 export const postNewFavorite = async (userWaterfall) => {
-    return await fetch("http://localhost:8088/userWaterfalls", {
+    return await fetch("https://fallsfinder-api-adhim.ondigitalocean.app/userWaterfalls", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -9,7 +9,7 @@ export const postNewFavorite = async (userWaterfall) => {
 }
 
 export const deleteFavoriteById = async (favoriteId) => {
-    return await fetch(`http://localhost:8088/userWaterfalls/${favoriteId}`, {
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/${favoriteId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
