@@ -7,19 +7,19 @@ export const getExpandedWaterfallById = async (waterfallId) => {
 }
 
 export const getWaterfallById = async (waterfallId) => {
-    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}`).then(res => res.json())
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls/${waterfallId}`).then(res => res.json())
 }
 
 export const getWaterfallsByUserId = async (userId) => {
-    return await fetch(`http://localhost:8088/waterfalls?userId=${userId}&_expand=difficultyLevel&_expand=location`).then(res => res.json())
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls?userId=${userId}&_expand=difficultyLevel&_expand=location`).then(res => res.json())
 }
 
 export const getUserWaterfallsByUserId = async (userId) => {
-    return await fetch(`http://localhost:8088/userWaterfalls?userId=${userId}`).then(res => res.json())
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/userWaterfalls?userId=${userId}`).then(res => res.json())
 }
 
 export const saveNewWaterfall = async (newWaterfall) => {
-    return await fetch("http://localhost:8088/waterfalls", {
+    return await fetch("https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -29,7 +29,7 @@ export const saveNewWaterfall = async (newWaterfall) => {
 }
 
 export const deleteWaterfall = async (waterfallId) => {
-    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}`, {
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls/${waterfallId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export const deleteWaterfall = async (waterfallId) => {
 }
 
 export const updateExistingWaterfall = async (waterfallId, newWaterfall) => {
-    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}`, {
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls/${waterfallId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -49,6 +49,6 @@ export const updateExistingWaterfall = async (waterfallId, newWaterfall) => {
 
 
 export const checkWaterfallByName = async (waterfallName) => {
-    const response = await fetch(`http://localhost:8088/waterfalls?name=${waterfallName}`).then(res => res.json())
+    const response = await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls?name=${waterfallName}`).then(res => res.json())
     return response.length > 0
 }
