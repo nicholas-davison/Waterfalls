@@ -1,9 +1,9 @@
 export const getWaterfalls = async () => {
-    return await fetch("http://localhost:8088/waterfalls?_expand=difficultyLevel&_expand=location").then(res => res.json())
+    return await fetch("https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls?_expand=difficultyLevel&_expand=location").then(res => res.json())
 }
 
 export const getExpandedWaterfallById = async (waterfallId) => {
-    return await fetch(`http://localhost:8088/waterfalls/${waterfallId}?_expand=difficultyLevel&_expand=location&_embed=userWaterfalls`).then(res => res.json())
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/waterfalls/${waterfallId}?_expand=difficultyLevel&_expand=location&_embed=userWaterfalls`).then(res => res.json())
 }
 
 export const getWaterfallById = async (waterfallId) => {
