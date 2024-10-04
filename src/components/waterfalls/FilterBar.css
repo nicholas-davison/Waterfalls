@@ -1,16 +1,33 @@
 .filterbar {
     margin: 20px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+    gap: 10px
 }
 
 .filterbar .input-group {
-    flex: 1; /* This will make the search bar take up the remaining space */
-    max-width: 500px; /* You can adjust the max-width as needed */
-    margin-right: 0px; /* Add some margin between the search bar and other elements */
+    /* flex: 1;  */
+    max-width: 500px; 
+    min-width: 250px;
+    display: flex;
   }
+
+  .filterbar .input-group input {
+    min-width: 100px;
+}
 
   .filterbar button {
     height: 38px; /* Adjust the height to match the search bar and dropdowns */
   }
+
+  @media (max-width: 768px) {
+    .filterbar {
+        align-items: center; /* Center items horizontally */
+    }
+
+    .filterbar .input-group {
+        width: 100%; 
+    }
+}
