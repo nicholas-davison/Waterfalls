@@ -9,7 +9,7 @@ export const postNewFavorite = async (userWaterfall) => {
 }
 
 export const deleteFavoriteById = async (favoriteId) => {
-    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/${favoriteId}`, {
+    return await fetch(`https://fallsfinder-api-adhim.ondigitalocean.app/userWaterfalls/${favoriteId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
