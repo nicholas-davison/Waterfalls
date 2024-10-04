@@ -1,3 +1,3 @@
 export const getDifficultyLevels = async() => {
-    return await fetch("http://localhost:8088/difficultyLevels").then(res => res.json())
+    return await fetch("https://fallsfinder-api-adhim.ondigitalocean.app/difficultyLevels").then(res => res.json())
 }
